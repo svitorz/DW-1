@@ -1,0 +1,75 @@
+Especialistas alertam para riscos de expansão de data centers de IA no Brasil
+
+Agência Senado | Brasília | 04/08/2026 17h52
+
+A expansão de data centers de inteligência artificial no Brasil pode provocar danos ambientais, alto consumo de água e aumento do custo da energia para o consumidor, sem trazer benefícios reais proporcionais para a população. Esses foram alguns dos problemas apontados por especialistas ouvidos em audiência pública na Comissão de Ciência e Tecnologia (CCT) do Senado Federal.
+
+O debate foi promovido para subsidiar a análise de um projeto de lei (PL 3.018/2024) que estabelece regras para a instalação e o funcionamento de centros de dados de IA. Os pedidos para a audiência (REQ 11/2026 - CCT e REQ 13/2026 - CCT) foram apresentados pelos senadores Teresa Leitão (PT-PE) e Rogério Carvalho (PT-SE). A intenção foi incluir na discussão, já iniciada em outra audiência pública, mais especialistas e representantes dos consumidores, de organizações ligadas ao meio ambiente e de comunidades indígenas.
+
+— Essa diversidade contribui para um debate qualificado e para o aperfeiçoamento da análise legislativa desta comissão. As contribuições apresentadas serão importantes para o aperfeiçoamento da proposta legislativa e para a construção de um ambiente regulatório que concilie inovação, desenvolvimento tecnológico, segurança jurídica, sustentabilidade e proteção de direitos — disse Teresa Leitão, ao iniciar o debate.
+
+O projeto de lei, de autoria do senador Styvenson Valentim (Podemos-RN), tem como relator o senador Vanderlan Cardoso (PSD-GO) e está em análise na CCT.
+
+
+O que é um data center de IA?
+
+Um data center de inteligência artificial é uma instalação altamente especializada que abriga a infraestrutura de tecnologia necessária para treinar, implantar e operar modelos avançados de IA e aprendizado de máquina. Essas estruturas são projetadas especificamente para lidar com cargas de trabalho intensivas em processamento de dados e algoritmos complexos.
+
+Diferente dos centros de dados tradicionais focados no armazenamento de arquivos e páginas de internet, os data centers de IA exigem milhares de unidades de processamento gráfico (GPUs) trabalhando simultaneamente em altíssima densidade. Isso resulta em uma demanda computacional sem precedentes, exigindo fornecimento ininterrupto de energia elétrica e sistemas complexos de resfriamento para evitar o superaquecimento dos equipamentos.
+
+[IMAGEM 1]
+LEGENDA: Vista aérea de data center do Google sediado em Santiago, no Chile. A unidade, com consumo intensivo de água, teve sua operação afetada pela seca que afetou a América Latina no ano passado - Rodrigo Arangua/AFP
+
+Além da densidade de servidores, os data centers de IA utilizam redes de conexões ultrarrápidas para sincronizar o processamento paralelo entre milhares de nós computacionais. Essa arquitetura permite realizar quatrilhões de cálculos por segundo, essenciais para o treinamento de grandes modelos de linguagem (LLMs) e sistemas de visão computacional.
+
+Para sustentar essa operação contínua, as instalações demandam uma infraestrutura robusta de suporte que inclui geradores de emergência, transformadores de alta voltagem e circuitos avançados de refrigeração líquida. Essa complexidade torna os data centers de IA empreendimentos de altíssimo custo operacional e com exigências severas de estabilidade na rede elétrica local.
+
+
+Impactos nos recursos naturais e na conta de energia
+
+Uma das principais preocupações debatidas no Senado é o impacto direto no sistema elétrico brasileiro. O consumo energético de apenas um único novo data center de inteligência artificial de grande porte pode equivaler a até cinco vezes a potência somada de mais de 200 data centers tradicionais atualmente em operação no país.
+
+Especialistas do Instituto de Defesa do Consumidor (Idec) alertam que esses empreendimentos consomem energia continuamente sem capacidade de adaptação de horário. Isso exige novos investimentos em geração e transmissão que acabam sendo repassados para a tarifa paga por todos os cidadãos, aumentando os custos de vida da população.
+
+[IMAGEM 2]
+LEGENDA: Servidores de alto desempenho operando em rack com luzes LED
+
+Além do consumo elétrico, há um alerta severo sobre o uso de água doce para o resfriamento dos servidores, especialmente em regiões que enfrentam estresse hídrico. A evaporação de milhões de litros d'água por dia para manter as máquinas em temperatura ideal coloca os centros de dados em direta competição com o abastecimento público e a agricultura local.
+
+Diante da sobrecarga nas redes elétricas nos horários de pico, especialistas propõem a criação de encargos tarifários específicos para setores de alto consumo contínuo. A medida busca garantir que as próprias empresas financiadores arquem com os custos de expansão do sistema elétrico, evitando que a conta caia sobre os consumidores residenciais.
+
+
+Regulação e debate no Senado Federal
+
+A audiência pública na CCT visou subsidiar a análise do Projeto de Lei (PL 3.018/2024), de autoria do senador Styvenson Valentim, que propõe regras rígidas para a instalação e o funcionamento de centros de dados no Brasil, buscando equilibrar a inovação tecnológica com a proteção ambiental e dos direitos dos cidadãos.
+
+Durante a reunião conduzida pela senadora Teresa Leitão, representantes de organizações ambientais, pesquisadores e lideranças comunitárias defenderam a criação de mecanismos de proteção ao abastecimento humano em momentos de escassez hídrica, além da garantia de consultas prévias e informadas às populações locais afetadas por grandes obras.
+
+[IMAGEM 3]
+LEGENDA: Audiência pública no Senado Federal sobre a regulamentação dos Data Centers de IA
+
+Especialistas também destacaram a importância de diferenciar na legislação os data centers de pequeno porte dos de hiperescala. Enquanto instalações menores atendem a serviços públicos locais e comércios regionais, os grandes complexos processam dados para corporações estrangeiras, exigindo contrapartidas sociais e tributárias compatíveis.
+
+Casos internacionais, como a instituição de moratórias temporárias em regiões dos Estados Unidos para controlar o uso desmedido de recursos naturais, serviram de alerta. O objetivo do Senado é aprovar um arcabouço normativo moderno que impeça danos ecológicos irreversíveis e assegure a soberania do país sobre sua matriz energética.
+
+
+O contraponto: Geração de empregos e R$ 25 bilhões em investimentos
+
+Por outro lado, estudos do setor demonstram o forte potencial econômico e estratégico da atração de infraestrutura digital para o país. Um levantamento realizado pela FGV Projetos indica que o Brasil reúne condições únicas para se consolidar como um dos principais hubs globais de IA na América Latina.
+
+A abundância de fontes de energia renovável no território nacional e a posição geográfica estratégica são apontadas como grandes diferenciais competitivos para atração de capitais internacionais e empresas globais de tecnologia.
+
+[IMAGEM 4]
+LEGENDA: Engenheira e especialista em tecnologia inspecionando cabeamento de fibra óptica em data center
+
+Segundo a pesquisa da Fundação Getulio Vargas, o avanço desses centros de dados tem potencial para mobilizar mais de R$ 25 bilhões em investimentos privados e gerar mais de 12 mil empregos diretos e indiretos no desenvolvimento do hub tecnológico.
+
+Esses empreendimentos podem impulsionar o ecossistema local de inovação, capacitar profissionais de alta tecnologia e promover a modernização da infraestrutura de telecomunicações no país, criando oportunidades para a indústria nacional.
+
+
+Fontes:
+
+(1) https://www12.senado.leg.br/noticias/materias/2026/08/04/especialistas-alertam-para-riscos-de-expansao-de-data-centers-de-ia-no-brasil
+(2) https://www.ibm.com/br-pt/think/topics/ai-data-center
+(3) https://portal.fgv.br/noticias/estudo-da-fgv-aponta-que-data-centers-com-ia-geram-mais-de-12-mil-empregos-e-mobilizam-25-bilhoes
+(4) https://www1.folha.uol.com.br/tec/2025/03/data-centers-para-ia-comecam-a-ser-montados-no-sul-do-pais-e-impoem-desafio-para-uso-de-agua-e-energia.shtml
