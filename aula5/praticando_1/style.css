@@ -1,0 +1,26 @@
+.parag_1 {
+  border: 10px solid red;
+  background-color: deepskyblue;
+}
+
+.parag_1 strong {
+  color: red;
+}
+
+.parag_2 {
+  border: 10px solid green;
+  background-color: yellow;
+}
+
+.parag_2 strong {
+  color: green;
+}
+
+.parag_3 {
+  border: 10px solid blue;
+  background-color: orange;
+}
+
+.parag_3 strong {
+  color: blue;
+}
