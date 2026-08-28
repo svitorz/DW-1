@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Praticando 2 - Tabela grande com colspan e rowspan colorida com css</title>
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <h1>Praticando 2 - Tabela grande com colspan e rowspan colorida com css</h1>
+  <section>
+    <h2>
+      Tabela com colspan e rowspan
+    </h2>
+    <table>
+      <tr>
+        <td colspan="2" class="green">colspan</td>
+        <td class="green">-</td>
+        <td rowspan="3" class="green">rowspan</td>
+      </tr>
+      <tr>
+        <td class="red">-</td>
+        <td class="red">-</td>
+        <td class="red">-</td>
+      </tr>
+      <tr>
+        <td class="blue">-</td>
+        <td class="blue" colspan="2">colspan</td>
+      </tr>
+      <tr class="yellow">
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+    </table>
+  </section>
+
+  <br />
+  <section>
+    <caption>Legenda</caption>
+    <table id="legenda">
+      <tr>
+        <td>Linha 1</td>
+        <td class="green">--------</td>
+        <td>green</td>
+      </tr>
+
+      <tr>
+        <td>Linha 2</td>
+        <td class="red">--------</td>
+        <td>red</td>
+      </tr>
+      <tr>
+        <td>Linha 3</td>
+        <td class="blue">--------</td>
+        <td>blue</td>
+      </tr>
+      <tr>
+        <td>Linha 4</td>
+        <td class="yellow">--------</td>
+        <td>yellow</td>
+      </tr>
+    </table>
+  </section>
+</body>
+
+</html>

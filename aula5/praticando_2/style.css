@@ -1,0 +1,35 @@
+table,
+td {
+  border: 1px solid red;
+}
+
+td {
+  padding: 30px 60px;
+  text-align: center;
+}
+
+.green {
+  background-color: green !important;
+}
+
+.red {
+  background-color: red !important;
+}
+
+.blue {
+  background-color: blue !important;
+}
+
+.yellow {
+  background-color: yellow !important;
+}
+
+#legenda td {
+  padding: 4px 8px;
+  background-color: white;
+}
+
+html,
+body {
+  background-color: lightblue;
+}
