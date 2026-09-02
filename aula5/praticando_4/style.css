@@ -1,0 +1,62 @@
+img {
+  width: 20%;
+  height: 15%;
+  border: 5px dotted;
+}
+
+figure {
+  margin: 0;
+}
+
+footer {
+  background-color: gray;
+}
+
+.border {
+  border: 5px solid;
+}
+
+.bg-black {
+  background-color: black;
+}
+
+.text-white {
+  color: white;
+}
+
+.border-b-green {
+  border-bottom: 20px solid darkgreen;
+}
+
+.bg-aqua {
+  background-color: lightblue;
+}
+
+.border-aqua {
+  border-color: blue;
+}
+
+.bg-orange {
+  background-color: orange;
+}
+
+.border-orange {
+  border-color: darkorange;
+}
+
+.bg-green {
+  background-color: green;
+}
+
+.border-green {
+  border-color: darkgreen;
+}
+
+.margin-bottom {
+  margin-bottom: 2%;
+}
+
+.dashed:hover {
+  background-color: deeppink;
+  outline: 10px dashed deeppink;
+}
