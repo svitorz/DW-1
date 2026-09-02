@@ -1,0 +1,59 @@
+.bg-white {
+  background-color: white;
+}
+
+.bg-yellow {
+  background-color: yellow;
+}
+
+.bg-orange {
+  background-color: #FFD580;
+}
+
+.bg-blue {
+  background-color: lightblue;
+}
+
+.border-red {
+  border: 5px solid red;
+}
+
+.border-orange {
+  border: 5px solid orange;
+}
+
+.border-blue {
+  border: 5px solid blue;
+}
+
+.border-blue-2 {
+  border: 2px solid blue;
+}
+
+.border-orange {
+  border: 5px solid orange;
+}
+
+.verde {
+  color: green;
+}
+
+.vermelho {
+  color: red;
+}
+
+.azul {
+  color: blue;
+}
+
+code {
+  background-color: lightgray;
+}
+
+.footer {
+  background-color: lightgray;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Praticando 3 - Seções, Containers e Bordas com CSS</title>
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+  <header class="bg-blue">
+    <h1>Praticando 3 - Seções, Containers e Bordas com CSS</h1>
+    <p>Este é um exemplo de cabeçalho feito com &lt;header&gt;</p>
+  </header>
+
+  <section>
+    <h2>Seção 1</h2>
+    <p>Este é um exemplo de texto com uma palavra <span class="azul">azul</span>, uma palavra <span
+        class="verde">verde</span> e uma palavra <span class="vermelho">vermelha</span></p>
+    <div>
+      <p class="border-red bg-yellow mb-0">Caixa de destaque (uma DIV dentro da seção):</p>
+      <div class="border-red bg-blue">
+        <p>
+          Segundo a “História da Web”, a primeira página HTML foi publicada em 1991 — mais de 30 anos atrás. Hoje, a
+          linguagem é usada em <strong>bilhões</strong> de páginas ao redor do mundo.
+        </p>
+        <p>
+          Curiosidade: o símbolo de grau (&deg;) e o de multiplicação (&times;) também são entidades, como em <strong>
+            25&deg;C</strong> ou <strong>
+            3 &times; 4</strong>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>
+      Seção 2
+    </h2>
+    <p>
+      Este é outro exemplo de texto, agora há mais palavras em <span class="verde">verde</span>, algumas em <span
+        class="azul">azul</span> e só uma
+      em <span class="vermelho">vermelho</span>.
+    </p>
+    <div class="border-red bg-blue">
+      <p>
+        Todo rodapé de site sério tem um símbolo de copyright (&copy;) e, às vezes, até de marca registrada (&reg;) ou
+        marca
+        comercial (&trade;). Setas também são comuns em menus: &leftarrow; voltar &rightarrow; avançar.
+      </p>
+
+      <p>
+        E frações? &frac12; xícara de açúcar, &frac14; de hora — tudo isso são entidades HTML!
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2>
+      Seção 3
+    </h2>
+
+    <p>
+      Além dos símbolos "bonitinhos", entidades resolvem um problema real: como mostrar um sinal de menor
+      (<code>&amp;lt;</code>) ou
+      maior
+      (<code>&amp;gt;</code>)
+      na tela sem o navegador achar que é o início de uma tag?
+    </p>
+
+    <div class="bg-yellow border-red">
+      <p>
+        Se eu quiser que a tag <code>&lt;p&gt;</code> apareça como texto normal (sem virar um parágrafo de verdade),
+        preciso escrever
+        <code>&amp;lt;p&amp;gt;</code> no código-fonte.
+      </p>
+
+      <p>
+        O mesmo vale para o "E comercial" (&): quando eu quero mostrá-lo literalmente, preciso escrever <code>
+          &amp;amp;</code>.
+      </p>
+
+      <p>
+        Repare que a tag <code>&lt;code&gt;</code> foi usada aqui porque ela indica que aquele trecho é código — e o
+        navegador já mostra
+        esse
+        texto com uma fonte diferente por padrão, sem eu precisar definir nada com CSS.
+      </p>
+    </div>
+
+  </section>
+
+  <section>
+
+    <h2>
+      Seção 4
+    </h2>
+
+    <p>
+      Alguns elementos HTML ficam <strong>na mesma linha </strong> que o conteúdo ao redor (inline); outros sempre
+      <strong>começam em uma linha</strong>
+      nova (block). Compare:
+    </p>
+
+    <div class="border-blue bg-blue" id="inline">
+      <h3>Inline</h3>
+      <span class="bg-white border-blue-2">
+        <a href="">
+          &lt;a&gt;
+        </a>
+      </span>
+      <span class="bg-white border-blue-2">
+        <strong>
+          &lt;strong&gt;
+        </strong>
+      </span>
+      <span class="bg-white border-blue-2">
+        <em>
+          &lt;em&gt;
+        </em>
+      </span>
+      <span class="bg-white border-blue-2">
+        <mark>
+          &lt;mark&gt;
+        </mark>
+      </span>
+      <span class="bg-white border-blue-2">
+        <code>
+          &lt;code&gt;
+        </code>
+      </span>
+
+      <span class="bg-white border-blue-2">
+        H<sub>2</sub>O (&lt;sub&gt;)
+      </span>
+
+      <span class="bg-white border-blue-2">
+        m <sup>2</sup> (&lt;sup&gt;)
+      </span>
+
+      <p>
+        Repare: todos os exemplos acima ficam lado a lado, na mesma linha. Caixa
+      </p>
+    </div>
+    <div class="border-orange bg-orange">
+      <h4>
+        Block
+      </h4>
+      <div class="bg-white border-orange">
+        &lt;div&gt; — um container genérico.
+      </div>
+      <p class="bg-white border-orange">
+        &lt;p&gt; — um parágrafo.
+      </p>
+      <h4 class="bg-white border-orange">
+        &lt;h1&gt;
+        a &lt;h6&gt; — títulos.
+      </h4>
+      <blockquote class="bg-white border-orange">
+        &lt;blockquote&gt; — uma citação.
+      </blockquote>
+      <section class="bg-white border-orange">
+        &lt;section&gt; — uma seção (como esta
+        própria
+        página
+        usa!)
+      </section>
+
+      <p>
+        Repare: cada exemplo acima começa em uma linha própria, mesmo sendo um texto curto.
+      </p>
+    </div>
+
+
+  </section>
+  <footer>
+    <div class="footer">
+      <p>
+        Este é um exemplo de rodapé feito com
+        &lt;footer&gt;.
+      </p>
+      &copy; 2026 IFSP Votuporanga — Desenvolvimento Web 1
+    </div>
+  </footer>
+</body>
+
+</html>
