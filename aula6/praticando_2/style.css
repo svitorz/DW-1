@@ -1,0 +1,35 @@
+h1 {
+  text-align: center;
+}
+
+body {
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-weight: bold;
+}
+
+div {
+  display: block;
+}
+
+.cartao {
+  border-radius: 5px;
+  background-color: #e0e0e0;
+  color: black;
+  padding: 10px;
+  margin: 1%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.alerta {
+  background-color: #7f8000;
+  color: #ffffff;
+}
+
+#critico {
+  color: white;
+  background-color: #cc0000;
+}
