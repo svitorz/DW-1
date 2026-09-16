@@ -1,0 +1,15 @@
+section {
+  display: inline-block;
+  width: 30%;
+  vertical-align: top;
+}
+
+#linus-imagem {
+  height: auto;
+  width: 25em;
+}
+
+.emphasis {
+  background-color: var(--color-primary);
+  font-weight: bold;
+}

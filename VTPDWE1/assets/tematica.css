@@ -1,0 +1,21 @@
+.nav-tematica {
+  display: block;
+}
+
+.nav-tematica h2 {
+  text-align: center;
+}
+
+.div-2 {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.div-2 section {
+  padding: 0 10em;
+  width: 50%;
+}
+
+#prince {
+  margin: 0 10em;
+}

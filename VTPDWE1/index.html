@@ -4,39 +4,40 @@
 <head>
   <meta charset="UTF-8">
   <title>Vitor - Sobre mim</title>
+  <link rel="stylesheet" href="assets/index.css">
+  <link rel="stylesheet" href="assets/pagina_inicial.css">
 </head>
 
 <body>
   <header>
-    <h1>Vitor Fábio</h1>
+    <h1 id="header-title">Vitor Fábio</h1>
     <p>Estudante de <strong>Sistemas de Informação</strong> no
-      <a href="https://vtp.ifsp.edu.br" target="_blank">
-        IFSP - Campus Votuporanga
-      </a>
+      <a href="https://vtp.ifsp.edu.br" class="banner-links" target="_blank">
+        IFSP - Campus Votuporanga</a><br />
       e Desenvolvedor de Software na
-      <a href="https://lumiun.com" target="_blank"> Lumiun Tecnologia </a>
+      <a href="https://lumiun.com" target="_blank" class="banner-links"> Lumiun Tecnologia </a>
     </p>
+    <a href="#inicio" id="botao_saiba_mais">Saiba mais</a>
   </header>
 
   <nav>
-    <a href="index.html">Sobre mim</a> |
-    <a href="cidade.html">Minha cidade</a> |
-    <a href="sonho.html">Um sonho</a> |
-    <a href="inspiracao.html">Alguém que me inspira</a> |
+    <a href="index.html">Sobre mim</a>
+    <a href="cidade.html">Minha cidade</a>
+    <a href="sonho.html">Um sonho</a>
+    <a href="inspiracao.html">Alguém que me inspira</a>
     <a href="tematica.html">Músicos favoritos</a>
   </nav>
 
-  <main>
-    <section>
-      <h2>Quem eu sou</h2>
+  <main id="inicio">
+    <section class="conteudo">
+      <h2 class="title">Quem eu sou</h2>
       <figure>
-        <img src="imagens/pfp_vitor.jpg" alt="Selfie de Vitor utilizando uma camiseta do Los Angeles Lakers"
-          width="300">
+        <img src="imagens/pfp_vitor.jpg" alt="Selfie de Vitor utilizando uma camiseta do Los Angeles Lakers" id="pfp">
         <figcaption>Eu, com uma camiseta do Lakers<sub>(2026)</sub></figcaption>
       </figure>
     </section>
 
-    <section>
+    <section class="conteudo">
       <h2>Hobbies e interesses</h2>
       <p>Minhas principais atividades fora do trabalho/faculdade, são</p>
       <ul>
@@ -53,7 +54,7 @@
       </p>
     </section>
 
-    <section>
+    <section class="conteudo">
       <h2>Contato</h2>
       <p>Pode me encontrar nos links abaixo:</p>
       <ul>

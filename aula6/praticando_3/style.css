@@ -1,0 +1,17 @@
+body {
+  background-color: lightblue;
+}
+
+#section-1 {
+  background-color: hotpink;
+}
+
+#section-2 {
+  background-color: dimgray;
+  color: yellow;
+}
+
+#section-3 {
+  background-color: darkseagreen;
+  opacity: 0.9;
+}
