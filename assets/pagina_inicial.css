@@ -1,0 +1,74 @@
+.conteudo {
+  display: inline-block;
+  width: 33%;
+  height: 60%;
+  /** FIXME **/
+  vertical-align: top;
+  padding: 2% 0px;
+}
+
+.conteudo h2 {
+  text-align: center;
+}
+
+#pfp {
+  width: 50%;
+}
+
+header {
+  padding: 17% 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--color-black);
+}
+
+header>h1,
+header>p {
+  text-align: center;
+  color: var(--color-white);
+}
+
+header>a:hover {
+  color: var(--color-white);
+}
+
+h1 {
+  font-size: 60px;
+  font-weight: bold;
+}
+
+header p {
+  font-size: 30px;
+}
+
+#botao_saiba_mais {
+  margin: 3em 55em;
+  padding: 1.5em;
+  border-radius: 20px;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+#botao_saiba_mais:hover {
+  color: var(--color-primary);
+  background-color: var(--color-white);
+  outline: 3px solid var(--color-primary);
+}
+
+.banner-links {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.banner-links:hover {
+  color: var(--color-white);
+}
+
+#header-title {
+  color: var(--color-primary);
+}
+
+nav {
+  margin: 5% 0;
+}

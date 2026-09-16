@@ -1,0 +1,52 @@
+h1,
+h2,
+h3 {
+  text-align: center;
+}
+
+.image-sections {
+  width: 100%;
+}
+
+.image-sections>section {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.image-sections p {
+  text-align: right;
+}
+
+#historia {
+  width: 40%;
+}
+
+#curiosidades {
+  width: 59%;
+}
+
+figure,
+figcaption,
+img {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  margin: 0 2%;
+  width: 30%;
+}
+
+figcaption {
+  display: none;
+}
+
+#mapa_antigo {
+  width: 70%;
+  height: auto;
+}
+
+iframe {
+  width: 50%;
+  height: 50%;
+}

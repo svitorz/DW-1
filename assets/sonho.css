@@ -1,0 +1,13 @@
+.galeria {
+  width: 100%;
+  display: inline-block;
+}
+
+.galeria div {
+  width: 30%;
+}
+
+mark {
+  color: var(--color-black);
+  background-color: var(--color-primary);
+}

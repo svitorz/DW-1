@@ -4,31 +4,33 @@
 <head>
   <meta charset="UTF-8">
   <title>Vitor - Alguém que me inspira</title>
+  <link rel="stylesheet" href="assets/index.css">
+  <link rel="stylesheet" href="assets/inspiracao.css">
 </head>
 
 <body>
-  <header>
+  <header class="header-default">
     <h1>Linus Torvalds</h1>
     <p>Criador do Linux e do Git</p>
   </header>
 
   <nav>
-    <a href="index.html">Sobre mim</a> |
-    <a href="cidade.html">Minha cidade</a> |
-    <a href="sonho.html">Um sonho</a> |
-    <a href="inspiracao.html">Alguém que me inspira</a> |
+    <a href="index.html">Sobre mim</a>
+    <a href="cidade.html">Minha cidade</a>
+    <a href="sonho.html">Um sonho</a>
+    <a href="inspiracao.html">Alguém que me inspira</a>
     <a href="tematica.html">Músicos favoritos</a>
   </nav>
 
   <main>
-    <article>
+    <article class="inspiracao-main-article">
       <h2>Por que me inspira?</h2>
       <section>
         <h3>
           Imagem histórica
         </h3>
         <figure>
-          <img src="imagens/linus-torvalds-dedo-meio.jpg"
+          <img src="imagens/linus-torvalds-dedo-meio.jpg" id="linus-imagem"
             alt="Foto de Linus Torvalds exibindo seu dedo médio para a NVIDIA." width="300">
           <figcaption>Linus Torvalds exibindo seu dedo médio para a NVIDIA.</figcaption>
         </figure>
@@ -51,12 +53,16 @@
       <section>
         <h2>Citações</h2>
         <blockquote cite="https://en.wikipedia.org/wiki/Linus_Torvalds">
-          <p>Talk is cheap. Show me the code.</p>
+          <span class="emphasis">
+            <p>Talk is cheap. Show me the code.</p>
+          </span>
         </blockquote>
         <p><cite>Linus Torvalds</cite>, em mensagem na lista de discussão do kernel Linux (2000)</p>
 
         <blockquote cite="https://en.wikipedia.org/wiki/Linus_Torvalds">
-          <p>Software is like sex: it's better when it's free.</p>
+          <span class="emphasis">
+            <p>Software is like sex: it's better when it's free.</p>
+          </span>
         </blockquote>
         <p><cite>Linus Torvalds</cite>, frase amplamente atribuída a ele sobre software livre</p>
       </section>
