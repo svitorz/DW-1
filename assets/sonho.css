@@ -1,13 +1,19 @@
 .galeria {
   width: 100%;
-  display: inline-block;
 }
 
 .galeria div {
-  width: 30%;
+  width: 33%;
+  display: inline-block;
+}
+
+.galeria img {
+  width: 30em;
+  height: auto;
 }
 
 mark {
-  color: var(--color-black);
+  padding: 0 3px;
+  color: var(--color-white);
   background-color: var(--color-primary);
 }
