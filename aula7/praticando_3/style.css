@@ -1,0 +1,39 @@
+.float-end{
+    float: right;
+}
+
+.float-start {
+    float: left;
+}
+
+.clear {
+    clear: left;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: purple;
+}
+
+img {
+    height: auto;
+    width: 15vw;
+    margin: 0 5vh;
+}
+
+p {
+    font-size: 3vh;
+    text-align: justify;
+    line-height: 3vh;
+    margin: 4vh 0;
+}
+
+section {
+    background-color: greenyellow;
+
+    padding: 3vh;
+    margin: 0 5vh;
+
+    height: 100%;
+}

@@ -1,0 +1,58 @@
+@import url("https://fonts.google.com/specimen/Lobster");
+
+html, body {
+  font-family: "Lobster", sans-serif;
+}
+
+h2 {
+    font-size: 4vh;
+    font-weight: bold;
+}
+img {
+    display: inline-block;
+}
+
+section{
+    margin-bottom: 4vh;
+    padding: 3vh;
+    
+    width: 100%;
+
+    border-style: solid;
+    border-top-width: 2vh;
+    border-bottom-width: 2vh;    
+    border-left: none;
+    border-right: none;
+}
+
+#section-1 {
+    background-color: greenyellow;
+    border-color: blue;
+
+}
+
+#section-2 {
+    border-color: rgb(155, 74, 44);
+    background-color: lightcoral;
+    text-align: right;
+}
+
+.img-1 {
+    height: auto;
+    width: 15vw;
+}
+
+.img-2 {
+    height: auto;
+    width: 20vw;
+}
+
+.img-3 {
+    height: auto;
+    width: 25vw;
+}
+
+.img-4 {
+    height: auto;
+    width: 30vw;
+}

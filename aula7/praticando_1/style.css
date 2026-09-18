@@ -1,0 +1,23 @@
+body {
+    background: lightblue;
+}
+
+section {
+    margin: 5vh 0;
+}
+
+.bg-white {
+    background-color: white;
+}
+
+#section-1 {
+    border: 1vh solid black;
+    font-size: 2vh;
+    width: 65%;
+}
+
+#section-2 {
+    border: 6px solid black;
+    font-size: 14pt;
+    width: 620px;
+}
