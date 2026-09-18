@@ -1,0 +1,37 @@
+.bg-green {
+  background-color: green;
+}
+
+.margin {
+  margin: 2em;
+}
+
+.box {
+  height: 8vw;
+  width: 8vw;
+  float: right;
+}
+
+.horizontal {
+  height: 8vw;
+  width: 28vw;
+  clear: both;
+}
+
+#auto {
+  display: flex;
+}
+
+.vertical {
+  height: 20vw;
+  width: 8vw;
+  display: inline-block;
+}
+
+.w-full {
+  width: 100%;
+}
+
+#float-end {
+  float: right;
+}
