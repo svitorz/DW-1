@@ -1,3 +1,4 @@
+/* ===== Base: mobile ===== */
 .nav-tematica {
   display: block;
 }
@@ -7,15 +8,43 @@
 }
 
 .div-2 {
-  display: inline-block;
-  vertical-align: top;
+  display: block;
+  /* seções empilhadas */
 }
 
-.div-2 section {
-  padding: 0 10em;
-  width: 50%;
-}
-
+.div-2 section,
 #prince {
-  margin: 0 10em;
+  box-sizing: border-box;
+  padding: 0 1rem;
+  margin-bottom: 1.5rem;
+}
+
+iframe {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  /* mantém a proporção do vídeo */
+  border: 0;
+}
+
+/* ===== Tablet / desktop ===== */
+@media (min-width: 768px) {
+  .div-2 {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .div-2 section {
+    flex: 1;
+    padding: 0 2rem;
+  }
+
+  #prince {
+    max-width: 50%;
+    /* mesma largura de uma coluna */
+    margin: 0 auto 1.5rem;
+    /* centralizado abaixo das duas colunas */
+    padding: 0 2rem;
+  }
 }
