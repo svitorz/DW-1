@@ -1,10 +1,7 @@
 .conteudo {
-  display: inline-block;
-  width: 33%;
-  height: 60%;
-  /** FIXME **/
-  vertical-align: top;
-  padding: 2% 0px;
+  width: 100%;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
 }
 
 .conteudo h2 {
@@ -12,14 +9,25 @@
 }
 
 #pfp {
-  width: 50%;
+  display: block;
+  width: 60%;
+  max-width: 250px;
+  height: auto;
+  margin: 0 auto;
 }
 
 header {
-  padding: 17% 0;
-  height: 100%;
   width: 100%;
+  min-height: 100vh;
+  padding: 4rem 1rem;
+  box-sizing: border-box;
+
   background-color: var(--color-black);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 header>h1,
@@ -33,21 +41,25 @@ header>a:hover {
 }
 
 h1 {
-  font-size: 60px;
+  font-size: 2.5rem;
   font-weight: bold;
 }
 
 header p {
-  font-size: 30px;
+  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
 #botao_saiba_mais {
-  margin: 3em 55em;
-  padding: 1.5em;
+  margin-top: 2rem;
+  padding: 1rem 1.5rem;
+
   border-radius: 20px;
   background-color: var(--color-primary);
   color: var(--color-white);
+
   text-decoration: none;
+  text-align: center;
 }
 
 #botao_saiba_mais:hover {
@@ -69,6 +81,48 @@ header p {
   color: var(--color-primary);
 }
 
-nav {
-  margin: 5% 0;
+
+/* Tablet */
+@media (min-width: 768px) {
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  header p {
+    font-size: 1.25rem;
+  }
+
+  #pfp {
+    width: 50%;
+  }
+
+  .conteudo {
+    width: 50%;
+  }
+}
+
+
+/* Desktop */
+@media (min-width: 1024px) {
+  main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .conteudo {
+    width: auto;
+    padding: 2rem;
+  }
+
+  #pfp {
+    width: 50%;
+  }
+
+  h1 {
+    font-size: 3.75rem;
+  }
+
+  header p {
+    font-size: 1.5rem;
+  }
 }

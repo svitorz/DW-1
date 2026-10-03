@@ -1,15 +1,106 @@
-section {
-  display: inline-block;
-  width: 30%;
-  vertical-align: top;
+.inspiracao-main-article {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.inspiracao-main-article>h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.inspiracao-main-article section {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem 0;
+}
+
+.inspiracao-main-article section h3 {
+  text-align: center;
 }
 
 #linus-imagem {
+  display: block;
+  width: 100%;
+  max-width: 300px;
   height: auto;
-  width: 25em;
+  margin: 0 auto;
+}
+
+figure {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
 }
 
 .emphasis {
+  display: block;
+  padding: 0.5rem 1rem;
   background-color: var(--color-primary);
+  color: var(--color-white);
   font-weight: bold;
+  border-radius: 5px;
+}
+
+.emphasis p {
+  margin: 0;
+  color: var(--color-white);
+}
+
+blockquote {
+  margin: 1.5rem 0 0.5rem;
+}
+
+blockquote+p {
+  margin-top: 0;
+  font-size: 0.8rem;
+}
+
+main>p {
+  padding: 0 1rem;
+}
+
+
+/* Tablet */
+@media (min-width: 768px) {
+  .inspiracao-main-article {
+    padding: 2rem;
+  }
+
+  .inspiracao-main-article section {
+    width: 100%;
+  }
+
+  #linus-imagem {
+    max-width: 400px;
+  }
+}
+
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .inspiracao-main-article {
+    padding: 2rem;
+  }
+
+  .inspiracao-main-article>section:nth-of-type(1),
+  .inspiracao-main-article>section:nth-of-type(2) {
+    display: inline-block;
+    width: 48%;
+    vertical-align: top;
+  }
+
+  .inspiracao-main-article>section:nth-of-type(3) {
+    width: 100%;
+  }
+
+  #linus-imagem {
+    max-width: 400px;
+  }
 }
