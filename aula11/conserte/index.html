@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praticando - Conserte a Página</title>
+    <!-- Erro 3: typo-->
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+    <header>
+        <!-- Erro 1: typo-->
+        <img src="img/logo_lanchonete.png" alt="Logo da Lanchonete do IF">
+        <h1>Lanchonete do IF</h1>
+        <p>Monte seu pedido e calcule o total</p>
+    </header>
+
+    <main>
+        <section class="cardapio">
+            <h2>Cardápio</h2>
+
+            <div class="item">
+                <label for="qtdXBurguer">X-Burguer <span>R$ 18,00</span></label>
+                <input type="number" id="qtdXBurguer" min="0" value="0">
+            </div>
+
+            <div class="item">
+                <label for="qtdPastel">Pastel <span>R$ 8,00</span></label>
+                <input type="number" id="qtdPastel" min="0" value="0">
+            </div>
+
+            <div class="item">
+                <label for="qtdCoxinha">Coxinha <span>R$ 7,00</span></label>
+                <input type="number" id="qtdCoxinha" min="0" value="0">
+            </div>
+
+            <div class="item">
+                <label for="qtdSuco">Suco natural <span>R$ 6,00</span></label>
+                <input type="number" id="qtdSuco" min="0" value="0">
+            </div>
+
+            <div class="item">
+                <label for="taxaEntrega">Taxa de entrega (R$)</label>
+                <input type="number" id="taxaEntrega" min="0" value="8">
+            </div>
+
+            <button id="btnCalcular">Calcular pedido</button>
+        </section>
+
+        <section class="resumo">
+            <h2>Resumo do pedido</h2>
+            <ul id="listaItens"></ul>
+            <p>Subtotal: <strong id="subtotal">R$ 0</strong></p>
+            <p>Total com entrega: <strong id="total">R$ 0</strong></p>
+        </section>
+    </main>
+    <!-- Erro dois: posição do Javascript -->
+    <script src="js/pedido.js"></script>
+</body>
+</html>
