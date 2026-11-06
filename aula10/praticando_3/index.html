@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Praticando 3 - Javascript - Cores</title>
+  <style>
+    .container-fluid {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2vw;
+    }
+
+    .box {
+      width: 30vw;
+      height: 15vh;
+      border: 1vw solid black;
+    }
+
+    #red {
+      background-color: red;
+    }
+
+    #blue {
+      background-color: blue;
+    }
+
+    #green {
+      background-color: green;
+    }
+
+    #yellow {
+      background-color: yellow;
+    }
+
+    #pink {
+      background-color: pink;
+    }
+
+    #preview {
+      text-align: center;
+      font-size: 10vh;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Praticando 3 - Javascript - Cores (click e mouse)</h1>
+  <div class="container-fluid">
+    <div class="box" id="red"> </div>
+    <div class="box" id="green"> </div>
+    <div class="box" id="blue"> </div>
+    <div class="box" id="yellow"> </div>
+    <div class="box" id="pink"> </div>
+  </div>
+  <button type="button" id="reset">Reset</button>
+
+  <p id="preview">PREVIEW</p>
+  <script>
+    var body = document.body.style;
+    var preview = document.getElementById("preview")
+    var boxes = document.querySelectorAll(".box");
+
+
+    function setPreview(value) {
+      if (value) {
+        preview.style.display = "block";
+      } else {
+        preview.style.display = "none";
+      }
+    }
+
+    function setBgcolor(color) {
+      body.backgroundColor = color;
+    }
+
+    let cor = "white";
+    setPreview(false);
+
+    boxes.forEach(function (box) {
+      box.addEventListener("click", function () {
+        cor = box.id;
+        setBgcolor(cor);
+      });
+
+      box.addEventListener("mouseover", function () {
+        setBgcolor(box.id);
+        setPreview(true);
+      });
+
+      box.addEventListener("mouseout", function () {
+        setBgcolor(cor);
+        setPreview(false);
+      });
+    });
+
+    document.getElementById("reset").addEventListener("click", function () {
+      cor = "white";
+      setBgcolor(cor);
+    })
+  </script>
+</body>
+
+</html>

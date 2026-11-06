@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de interessados | Aliança Nacional Libertadora (ANL)</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <header class="masthead py-4 text-center">
+    <div class="container">
+      <p class="masthead-sigla mb-2">ANL</p>
+      <p class="masthead-nome mb-0">Aliança Nacional Libertadora</p>
+    </div>
+  </header>
+
+  <nav class="navbar navbar-dark anl-nav" aria-label="Navegação principal">
+    <div class="container">
+      <ul class="navbar-nav flex-row flex-wrap justify-content-center gap-4 w-100 py-2">
+        <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">Sobre a ANL</a></li>
+        <li class="nav-item"><a class="nav-link active" href="form.html" aria-current="page">Cadastro</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+
+        <h1 class="display-6 fw-bold">Cadastro de interessados em história e memória</h1>
+        <p class="lead">Simule um cadastro de interesse em estudar a história da Aliança Nacional Libertadora.</p>
+
+        <p class="small">Campos marcados com <span class="text-primary fw-bold">*</span> são obrigatórios.</p>
+
+        <!-- method="dialog" fora de um elemento <dialog> não envia os dados: o navegador apenas valida os campos. -->
+        <form method="dialog" class="mt-4">
+          <div class="row g-3">
+
+            <div class="col-md-6">
+              <label for="nome" class="form-label">Nome completo <span class="text-primary fw-bold">*</span></label>
+              <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome completo"
+                autocomplete="name" required>
+            </div>
+
+            <div class="col-md-6">
+              <label for="email" class="form-label">E-mail <span class="text-primary fw-bold">*</span></label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="exemplo@email.com"
+                autocomplete="email" required>
+            </div>
+
+            <div class="col-md-6">
+              <label for="telefone" class="form-label">Telefone</label>
+              <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="(00) 00000-0000"
+                autocomplete="tel" pattern="\(\d{2}\) \d{4,5}-\d{4}" title="Use o formato (00) 00000-0000">
+            </div>
+
+            <div class="col-md-6">
+              <label for="site" class="form-label">Site pessoal ou perfil acadêmico</label>
+              <input type="url" class="form-control" id="site" name="site" placeholder="https://exemplo.com"
+                autocomplete="url">
+            </div>
+
+            <div class="col-md-6">
+              <label for="idade" class="form-label">Idade</label>
+              <input type="number" class="form-control" id="idade" name="idade" min="14" max="120" step="1">
+            </div>
+
+            <div class="col-md-6">
+              <label for="nascimento" class="form-label">Data de nascimento</label>
+              <input type="date" class="form-control" id="nascimento" name="nascimento">
+            </div>
+
+            <div class="col-12">
+              <label for="interesse" class="form-label">Principal interesse de estudo</label>
+              <select class="form-select" id="interesse" name="interesse">
+                <option value="" selected disabled>Selecione uma opção</option>
+                <option value="historia-brasil">História do Brasil</option>
+                <option value="movimentos-sociais">Movimentos sociais</option>
+                <option value="politica-1930">Política na década de 1930</option>
+                <option value="fontes-historicas">Fontes históricas</option>
+                <option value="pesquisa-academica">Pesquisa acadêmica</option>
+              </select>
+            </div>
+
+            <div class="col-12">
+              <label for="motivacao" class="form-label">Por que você deseja conhecer a história da ANL?</label>
+              <textarea class="form-control" id="motivacao" name="motivacao" rows="4"
+                placeholder="Descreva o que despertou seu interesse pela história da ANL, quais temas pretende estudar ou quais perguntas quer responder."></textarea>
+            </div>
+
+            <fieldset class="col-md-6">
+              <legend class="fs-6 fw-bold float-none w-auto">Como você conheceu este projeto?</legend>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="conheceu" id="conheceu-escola" value="escola">
+                <label class="form-check-label" for="conheceu-escola">Escola ou faculdade</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="conheceu" id="conheceu-internet" value="internet">
+                <label class="form-check-label" for="conheceu-internet">Internet</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="conheceu" id="conheceu-indicacao" value="indicacao">
+                <label class="form-check-label" for="conheceu-indicacao">Indicação de outra pessoa</label>
+              </div>
+            </fieldset>
+
+            <fieldset class="col-md-6">
+              <legend class="fs-6 fw-bold float-none w-auto">Quais temas históricos interessam a você?</legend>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="temas" id="tema-politica" value="politica">
+                <label class="form-check-label" for="tema-politica">História política</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="temas" id="tema-movimentos" value="movimentos">
+                <label class="form-check-label" for="tema-movimentos">Movimentos sociais</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="temas" id="tema-economica" value="economica">
+                <label class="form-check-label" for="tema-economica">História econômica</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="temas" id="tema-memoria" value="memoria">
+                <label class="form-check-label" for="tema-memoria">Memória documental</label>
+              </div>
+            </fieldset>
+
+            <div class="col-12">
+              <label for="material" class="form-label">Anexar material de referência (opcional)</label>
+              <input type="file" class="form-control" id="material" name="material" accept=".pdf,.doc,.docx,.odt,.txt"
+                aria-describedby="material-ajuda">
+              <div id="material-ajuda" class="form-text">Formatos aceitos: PDF, DOC, DOCX, ODT e TXT.</div>
+            </div>
+
+            <div class="col-12 d-flex flex-wrap gap-2 pt-2">
+              <button type="submit" class="btn btn-primary">Enviar cadastro</button>
+              <button type="reset" class="btn btn-outline-dark">Limpar formulário</button>
+            </div>
+
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="anl-footer py-4 text-center">
+    <div class="container">
+      <p class="mb-1">Aliança Nacional Libertadora (ANL) · Projeto acadêmico sobre história e memória</p>
+      <p class="small mb-0">Projeto acadêmico independente, sem vínculo oficial com a ANL histórica ou com organizações
+        políticas atuais.</p>
+    </div>
+  </footer>
+
+</body>
+
+</html>
