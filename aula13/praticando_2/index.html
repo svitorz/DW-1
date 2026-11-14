@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Praticando 3 - Javascript - Cores</title>
+  <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U="
+    crossorigin="anonymous"></script>
+  <style>
+    .container-fluid {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2vw;
+    }
+
+    .box {
+      width: 30vw;
+      height: 15vh;
+      border: 1vw solid black;
+    }
+
+    #red {
+      background-color: red;
+    }
+
+    #blue {
+      background-color: blue;
+    }
+
+    #green {
+      background-color: green;
+    }
+
+    #yellow {
+      background-color: yellow;
+    }
+
+    #pink {
+      background-color: pink;
+    }
+
+    #preview {
+      text-align: center;
+      font-size: 10vh;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Praticando 3 - Javascript - Cores (click e mouse)</h1>
+  <div class="container-fluid">
+    <div class="box" id="red"> </div>
+    <div class="box" id="green"> </div>
+    <div class="box" id="blue"> </div>
+    <div class="box" id="yellow"> </div>
+    <div class="box" id="pink"> </div>
+  </div>
+  <button type="button" id="reset">Reset</button>
+
+  <p id="preview">PREVIEW</p>
+  <script>
+    $(document).ready(function () {
+      let selected = "white";
+      $(".box")
+        .hover(
+          function () {
+            $("body").css("background-color", this.id);
+            $("#preview").show();
+          },
+          function () {
+            $("body").css("background-color", selected);
+            $("#preview").hide();
+          }
+        )
+        .click(function () {
+          selected = this.id;
+        });
+
+      $("#reset").click(function () {
+        selected = "white";
+        $("body").css("background-color", selected);
+      });
+    });
+
+    $("#reset").click(() => {$("body").css("background-color", "white")})
+  </script>
+</body>
+
+</html>
