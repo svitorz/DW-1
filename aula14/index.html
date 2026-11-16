@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Praticando 1 - FetchAPI</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+  <!-- jQuery -->
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+
+  <!-- Bootstrap JS -->
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+  <div class="container-fluid m-5">
+    <h1>Cadastro</h1>
+    <form class="row g-3">
+      <div class="md:col-6">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name">
+      </div>
+      <div class="md:col-6">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email">
+      </div>
+      <div class="row g-3">
+        <div class="md:col-3">
+          <label for="cep" class="form-label">CEP</label>
+          <input type="text" class="form-control valid" id="cep" placeholder="00000-000"
+            aria-describedby="cepFeedbackValid cepFeedbackInvalid">
+          <div id="cepFeedbackValid" class="valid-feedback">CEP Encontrado!</div>
+          <div id="cepFeedbackInvalid" class="invalid-feedback"></div>
+        </div>
+        <div class="col-9">
+          <label for="rua" class="form-label">Rua</label>
+          <input disabled type="text" class="form-control" id="rua" placeholder="Apartment, studio, or floor">
+        </div>
+      </div>
+      <div class="row g-3">
+        <div class="md:col-3">
+          <label for="numero" class="form-label">Número</label>
+          <input disabled type="number" class="form-control" id="numero">
+        </div>
+        <div class="md:col-3">
+          <label for="bairro" class="form-label">Bairro</label>
+          <input disabled type="text" class="form-control" id="bairro">
+        </div>
+        <div class="md:col-3">
+          <label for="cidade" class="form-label">Cidade</label>
+          <input disabled type="text" class="form-control" id="cidade">
+        </div>
+        <div class="md:col-3">
+          <label for="uf" class="form-label">UF</label>
+          <input disabled type="text" class="form-control" id="uf">
+        </div>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn-solid theme-primary">Sign in</button>
+      </div>
+    </form>
+  </div>
+  <script>
+    $(document).ready(function () {
+      $("#name").focus();
+      $("#cep").on("change", function () {
+        buscarCep()
+      }).on("keydown", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          buscarCep();
+        }
+      });
+    });
+
+    function buscarCep() {
+      const cep = $("#cep").val().replace(/\D/g, "");
+
+      if (cep.length != 8) {
+        $("#cep").addClass("is-invalid")
+        $("#cepFeedbackInvalid").text("O CEP precisa ter 8 dígitos.")
+        $("#rua, #bairro, #cidade, #uf").prop("disabled", true);
+        $("#rua, #numero, #bairro, #cidade, #uf").val("");
+        return;
+      }
+
+      const url = `https://viacep.com.br/ws/${cep}/json/`
+
+      $.ajax({
+        url: url,
+        method: 'GET',
+        success: function (data) {
+          if (data.erro) {
+            $("#cep").addClass("is-invalid").removeClass("is-valid");
+            $("#cepFeedbackInvalid").text("CEP não encontrado.");
+            $("#rua, #bairro, #cidade, #uf").prop("disabled", true);
+            $("#rua, #numero, #bairro, #cidade, #uf").val("");
+            return;
+          }
+
+          $("#cep").addClass("is-valid").removeClass("is-invalid")
+
+          $("#bairro").val(data.bairro)
+          $("#cidade").val(data.localidade)
+          $("#rua").val(data.logradouro)
+          $("#numero").val(data.numero)
+          $("#uf").val(data.uf);
+          $("#rua, #numero, #bairro, #cidade, #uf").prop("disabled", false);
+        },
+        error: function (error) {
+          $("#cep").addClass("is-invalid").removeClass("is-valid");
+          $("#cepFeedbackInvalid").text("CEP não encontrado.");
+          $("#rua, #bairro, #cidade, #uf").prop("disabled", true);
+          $("#rua, #numero, #bairro, #cidade, #uf").val("");
+          return;
+        }
+      })
+    }
+  </script>
+  <script type="module" src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
