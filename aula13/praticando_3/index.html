@@ -71,15 +71,15 @@
         $(this).removeClass("btn-outline").addClass("btn-solid")
       });
 
-      $("#removeFirstPar").click(() => {$("#paragraph").children("li").get(0).remove()})
-      $("#removeLastPar").click(() => {$("#paragraph").children("li").get($("#paragraph").children("li").length - 1).remove()})
-      $("#removeAll").click(() => {$("#paragraph").children("li").remove()})
+      $("#removeFirstPar").click(() => {$("#text").children("li").get(0).remove()})
+      $("#removeLastPar").click(() => {$("#text").children("li").get($("#paragraph").children("li").length - 1).remove()})
+      $("#removeAll").click(() => {$("#text").empty()})
 
       $("#removeOneImg").click(() => {$("#imgs").children("img").get(0).remove()})
-      $("#removeAllImg").click(() => {$("#imgs").children("img").remove()})
+      $("#removeAllImg").click(() => {$("#imgs").empty()})
 
       $("#addImg").click(() => {$("#imgs").prepend('<img class="w-12 img-thumbnail" src="./img/gatinho.jpg" />')});
-      $("#addText").click(function () {$("#paragraph").append("<li>#" + counter++ + " Lorem ipsum dolor sit amet, consectur adipisicing elit. </li>")});
+      $("#addText").click(function () {$("#text").append("<li>#" + counter++ + " Lorem ipsum dolor sit amet, consectur adipisicing elit. </li>")});
     });
   </script>
 </body>
