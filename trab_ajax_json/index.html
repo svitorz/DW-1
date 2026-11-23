@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Trabalho JSON com Ajax</title>
-  <link rel="stylesheet" href="./css/style.css">
   <!-- Bootstrap CSS -->
   <link href="./bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
 
   <!-- jQuery -->
   <script src="./jquery/dist/jquery.min.js"></script>
@@ -32,14 +32,14 @@
             <div class="fw-bold toast-title"></div>
             <div class="toast-message"></div>
           </div>
-          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+          <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
             aria-label="Fechar"></button>
         </div>
       </div>
     </template>
 
     <div class="container-fluid">
-      <h5>Cadastrar novo contatos</h4>
+      <h5>Cadastrar novo contato</h5>
         <form>
           <div class="row g-3">
             <div class="lg:col-6">
@@ -56,14 +56,14 @@
             </div>
           </div>
           <div class="my-5">
-            <button type="button" id="send-button" class="btn-style theme-primary btn-solid">
+            <button type="button" id="send-button" class="btn-solid theme-primary">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-floppy"
                 viewBox="0 0 16 16">
                 <path d="M11 2H9v3h2z" />
                 <path
                   d="M1.5 0h11.586a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13A1.5 1.5 0 0 1 1.5 0M1 1.5v13a.5.5 0 0 0 .5.5H2v-4.5A1.5 1.5 0 0 1 3.5 9h9a1.5 1.5 0 0 1 1.5 1.5V15h.5a.5.5 0 0 0 .5-.5V2.914a.5.5 0 0 0-.146-.353l-1.415-1.415A.5.5 0 0 0 13.086 1H13v4.5A1.5 1.5 0 0 1 11.5 7h-7A1.5 1.5 0 0 1 3 5.5V1H1.5a.5.5 0 0 0-.5.5m3 4a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V1H4zM3 15h10v-4.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5z" />
               </svg>Gravar</button>
-            <button type="reset" class="btn-style theme-secondary btn-solid">Limpar</button>
+            <button type="reset" class="btn-subtle theme-secondary">Limpar</button>
           </div>
         </form>
         <table class="table table-borderless align-middle font-monospace">
@@ -99,7 +99,7 @@
                   <div class="small text-secondary" data-field="email"></div>
                 </td>
                 <td class="text-end">
-                  <button type="button" class="btn btn-sm border-0 btn-outline-danger rounded-3 btn-delete">
+                  <button type="button" class="btn-icon btn-sm btn-subtle theme-danger rounded-3 btn-delete">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                       class="bi bi-trash" viewBox="0 0 16 16">
                       <path
@@ -283,7 +283,7 @@
     function showToast(title, message, ok = true) {
       const el = document.getElementById("toast-template").content.firstElementChild.cloneNode(true);
 
-      el.classList.add(ok ? "text-bg-success" : "text-bg-danger");
+      el.classList.add(...(ok ? ["bg-success", "fg-contrast-success"] : ["bg-danger", "fg-contrast-danger"]));
       el.querySelector(".toast-title").textContent = title;
       el.querySelector(".toast-message").textContent = message;
 
