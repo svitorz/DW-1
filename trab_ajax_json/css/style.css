@@ -11,3 +11,65 @@ body {
 .toast[class*="bg-"] .btn-close {
   filter: invert(1) grayscale(1) brightness(2);
 }
+
+/* Paleta da aplicação */
+:root {
+  --app-primary: var(--bs-indigo-500);
+  --app-primary-strong: var(--bs-indigo-600);
+  --app-accent: var(--bs-teal-500);
+  --app-gradient: linear-gradient(135deg, var(--bs-indigo-600), var(--bs-violet-500) 55%, var(--bs-teal-500));
+  --app-surface: #ffffff;
+  --app-page-bg: #f4f3ff;
+  --app-radius: 1rem;
+  --app-shadow: 0 10px 30px -12px rgb(79 70 229 / .25);
+
+  /* Faz o tema "primary" do Bootstrap usar o índigo */
+  --bs-primary-base: var(--bs-indigo-500);
+  --bs-primary-bg: var(--bs-indigo-500);
+  --bs-primary-fg: light-dark(var(--bs-indigo-600), var(--bs-indigo-400));
+  --bs-primary-bg-subtle: light-dark(var(--bs-indigo-100), var(--bs-indigo-900));
+}
+
+body {
+  background: var(--app-page-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* Cabeçalho colorido */
+.app-hero {
+  background: var(--app-gradient);
+  color: #fff;
+  padding: 2rem 1.5rem;
+  border-radius: 0 0 var(--app-radius) var(--app-radius);
+  box-shadow: var(--app-shadow);
+}
+
+/* Cartões */
+.app-card {
+  background: var(--app-surface);
+  border: 0;
+  border-radius: var(--app-radius);
+  box-shadow: var(--app-shadow);
+}
+
+.app-card-header {
+  border-bottom: 1px solid rgb(0 0 0 / .06);
+  padding: 1rem 1.25rem;
+}
+
+/* Botão Gravar com o gradiente da marca */
+#send-button {
+  background: var(--app-gradient);
+  border: 0;
+  color: #fff;
+}
+
+#send-button:hover {
+  filter: brightness(1.08);
+}
