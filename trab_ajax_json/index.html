@@ -41,7 +41,7 @@
             </div>
             <div class="toast-message"></div>
           </div>
-          <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Fechar"></button>
+          <button type="button" class="btn-close me-2 m-auto" aria-label="Fechar"></button>
         </div>
       </div>
     </template>
@@ -81,11 +81,10 @@
         <div class="app-card h-100">
           <div class="app-card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
             <h5 class="mb-0"><i class="bi bi-people me-2" aria-hidden="true"></i>Contatos cadastrados</h5>
-            <div class="d-flex align-items-center gap-2">
+            <div class="d-flex align-items-center flex-wrap gap-2">
               <span id="record-count" class="badge badge-subtle theme-info">…</span>
-              <button type="button" id="updateTable" class="btn-icon btn-subtle theme-primary" title="Atualizar lista"
-                aria-label="Atualizar lista">
-                <i class="bi bi-arrow-repeat" aria-hidden="true"></i>
+              <button type="button" id="updateTable" class="btn-subtle theme-primary btn-sm">
+                <i class="bi bi-arrow-repeat me-1" aria-hidden="true"></i><span>Atualizar dados da tabela</span>
               </button>
             </div>
           </div>
@@ -155,11 +154,9 @@
     <small class="fg-3">Desenvolvido por Vitor Fábio. <i class="bi bi-heart-fill fg-danger"
         aria-hidden="true"></i></small>
   </footer>
-  <script type="module">
-    import {Toast} from "./bootstrap/dist/js/bootstrap.bundle.min.js";
-
+  <script>
     $(document).ready(function () {
-      $("#updateTable").on("click", fetchData);
+      $("#updateTable").on("click", atualizarManual);
       $("#send-button").on("click", sendData);
 
       $("#table-line").on("click", ".btn-delete", function () {
@@ -184,6 +181,9 @@
     const rowTemplate = document.getElementById("row-template");
     const deleteDialog = document.getElementById("confirm-delete-dialog");
     const temasAvatar = ["theme-primary", "theme-info", "theme-success", "theme-warning", "theme-accent"];
+    const ESPERA_ATUALIZAR_MS = 5000; // 5 segundos entre atualizações manuais
+    let atualizarLiberadoEm = 0;
+    let requisicaoLista = null;
 
     function askDeleteConfirmation(id, nome) {
       $("#confirm-delete-dialog").data("id", id);
@@ -199,7 +199,7 @@
       const url = `https://epansani.com.br/2026/dwe1/ajax/rem.php`;
 
       const body = JSON.stringify({
-        id: id,
+        id: Number(id),
       });
 
       $.ajax({
@@ -213,13 +213,13 @@
         success: function (data) {
           showToast(data.ok ? "Contato excluído" : "Erro ao excluir", mensagemDaApi(data, "Operação concluída."), data.ok);
 
-          afterSubmit();
+          fetchData();
         },
 
         error: function (xhr) {
           const message = mensagemDaApi(xhr.responseJSON, "Erro ao excluir contato.");
           showToast("Erro ao excluir", message, false);
-          afterSubmit();
+          fetchData();
         }
       });
     }
@@ -254,13 +254,14 @@
         success: function (data) {
           showToast(data.ok ? "Contato cadastrado" : "Erro ao cadastrar", mensagemDaApi(data, "Operação concluída."), data.ok);
 
-          afterSubmit();
+          if (data.ok) limparFormulario();
+          fetchData();
         },
 
         error: function (xhr) {
           const message = mensagemDaApi(xhr.responseJSON, "Erro ao cadastrar contato.");
           showToast("Erro ao cadastrar", message, false);
-          afterSubmit();
+          fetchData();
         },
 
         complete: function () {
@@ -269,10 +270,40 @@
       });
     }
 
-    function afterSubmit() {
+    function limparFormulario() {
       $("#name").val("");
       $("#email").val("");
+    }
+
+    function atualizarManual() {
+      const agora = Date.now();
+      if (agora < atualizarLiberadoEm) {
+        const segundos = Math.ceil((atualizarLiberadoEm - agora) / 1000);
+        showToast("Aguarde", `Você poderá atualizar novamente em ${segundos}s.`, false);
+        return;
+      }
+
+      atualizarLiberadoEm = agora + ESPERA_ATUALIZAR_MS;
+      iniciarContagemBotao();
       fetchData();
+    }
+
+    function iniciarContagemBotao() {
+      const $btn = $("#updateTable");
+      const $texto = $btn.find("span");
+      const textoOriginal = "Atualizar dados da tabela";
+      $btn.prop("disabled", true);
+
+      const timer = setInterval(() => {
+        const restante = Math.ceil((atualizarLiberadoEm - Date.now()) / 1000);
+        if (restante <= 0) {
+          clearInterval(timer);
+          $btn.prop("disabled", false);
+          $texto.text(textoOriginal);
+        } else {
+          $texto.text(`Aguarde ${restante}s`);
+        }
+      }, 250);
     }
 
     function updateRecordCount(total) {
@@ -286,7 +317,9 @@
       $("#record-count").text("carregando…");
       const url = `https://epansani.com.br/2026/dwe1/ajax/list.php`;
 
-      $.ajax({
+      if (requisicaoLista) requisicaoLista.abort();
+
+      requisicaoLista = $.ajax({
         url: url,
         method: 'GET',
         headers: {"Content-Type": "application/json"},
@@ -300,12 +333,17 @@
           }
           updateRecordCount(data.length);
         },
-        error: function (error) {
+        error: function (xhr, status) {
+          if (status === "abort") return; // cancelada de propósito por uma listagem mais nova
           showToast("Erro de conexão", "Falha na comunicação com o servidor.", false);
           $("#record-count").text("—");
-          return;
         },
-        complete: function () {$("#loading").addClass("d-none").removeClass("d-flex")}
+        complete: function (xhr) {
+          if (xhr === requisicaoLista) {
+            requisicaoLista = null;
+            $("#loading").addClass("d-none").removeClass("d-flex");
+          }
+        }
       });
     }
 
@@ -373,12 +411,15 @@
       el.querySelector(".toast-title-text").textContent = title;
       el.querySelector(".toast-message").textContent = message;
 
-      el.addEventListener("hidden.bs.toast", () => el.remove());
       document.getElementById("toast-container").appendChild(el);
+      el.classList.add("show");
 
-      Toast.getOrCreateInstance(el, {
-        delay: 4000
-      }).show();
+      const fechar = () => {
+        el.classList.remove("show");
+        setTimeout(() => el.remove(), 300); // espera a animação de saída
+      };
+      el.querySelector(".btn-close").addEventListener("click", fechar);
+      setTimeout(fechar, 4000);
     }
 
     function validateContact(nome, email) {
@@ -394,8 +435,8 @@
 
       if (!email) {
         erros.push("O campo Email é obrigatório.");
-      } else if (email.length > 255) {
-        erros.push("O e-mail deve ter no máximo 255 caracteres.");
+      } else if (email.length > 100) {
+        erros.push("O e-mail deve ter no máximo 100 caracteres.");
       } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         erros.push("Informe um e-mail válido (ex.: nome@dominio.com).");
       }
