@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trabalho JSON com Ajax</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <!-- Bootstrap CSS -->
+  <link href="./bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- jQuery -->
+  <script src="./jquery/dist/jquery.min.js"></script>
+
+</head>
+
+<body>
+  <header class="m-4">
+    <h1>Contatos</h1>
+    <p class="fg-3">
+      Gerenciamento de contatos
+    </p>
+  </header>
+  <main>
+
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+      <div id="toast-feedback" class="toast align-items-center border-0 text-bg-success" role="alert"
+        aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body"></div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+            aria-label="Fechar"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <h5>Cadastrar novo contatos</h4>
+        <form>
+          <div class="row g-3">
+            <div class="lg:col-6">
+              <div class="form-floating">
+                <label for="name">Nome</label>
+                <input type="text" class="form-control" id="name" placeholder="Maria">
+              </div>
+            </div>
+            <div class="lg:col-6">
+              <div class="form-floating">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="name@example.com">
+              </div>
+            </div>
+          </div>
+          <div class="my-5">
+            <button type="button" id="send-button" class="btn-style theme-primary btn-solid">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-floppy"
+                viewBox="0 0 16 16">
+                <path d="M11 2H9v3h2z" />
+                <path
+                  d="M1.5 0h11.586a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13A1.5 1.5 0 0 1 1.5 0M1 1.5v13a.5.5 0 0 0 .5.5H2v-4.5A1.5 1.5 0 0 1 3.5 9h9a1.5 1.5 0 0 1 1.5 1.5V15h.5a.5.5 0 0 0 .5-.5V2.914a.5.5 0 0 0-.146-.353l-1.415-1.415A.5.5 0 0 0 13.086 1H13v4.5A1.5 1.5 0 0 1 11.5 7h-7A1.5 1.5 0 0 1 3 5.5V1H1.5a.5.5 0 0 0-.5.5m3 4a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V1H4zM3 15h10v-4.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5z" />
+              </svg>Gravar</button>
+            <button type="reset" class="btn-style theme-secondary btn-solid">Limpar</button>
+          </div>
+        </form>
+        <table class="table table-borderless align-middle font-monospace">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4>Contatos cadastrados</h4>
+            <span class="badge badge-subtle theme-info float-end">2 registros</span>
+          </div>
+          <thead>
+            <tr class="border-bottom">
+              <th scope="col" class="text-uppercase small fw-normal text-secondary" style="letter-spacing: .08em;">
+                Nome / E-mail</th>
+              <th scope="col" class="text-uppercase small fw-normal text-secondary text-end"
+                style="letter-spacing: .08em;">Ação</th>
+            </tr>
+            <button type="button" id="updateTable" class="lg:col-3 md:col-12 btn-solid theme-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                <path
+                  d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41m-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9" />
+                <path fill-rule="evenodd"
+                  d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5 5 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z" />
+              </svg>
+              Atualizar informações da tabela</button>
+          </thead>
+          <tbody id="table-line">
+            <template id="row-template">
+              <tr>
+                <td>
+                  <div class="spinner-border d-none" id="spinner" role="status">
+                    <span class="visually-hidden">Carregando…</span>
+                  </div>
+                  <div class="fw-semibold" data-field="nome"></div>
+                  <div class="small text-secondary" data-field="email"></div>
+                </td>
+                <td class="text-end">
+                  <button type="button" class="btn btn-sm border-0 btn-outline-danger rounded-3 btn-delete">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                      class="bi bi-trash" viewBox="0 0 16 16">
+                      <path
+                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                      <path
+                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                    </svg>
+                  </button>
+                </td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+    </div>
+  </main>
+
+  <dialog id="confirm-delete-dialog" class="rounded-3 border-0 shadow p-0">
+    <div class="p-4">
+      <h5 class="mb-3">Confirmar exclusão</h5>
+      <p class="mb-4">Tem certeza que deseja excluir o contato <strong id="confirm-delete-name"></strong>? Esta ação não pode ser desfeita.</p>
+      <div class="d-flex justify-content-end gap-2">
+        <button type="button" class="btn btn-secondary" id="cancel-delete">Cancelar</button>
+        <button type="button" class="btn btn-danger" id="confirm-delete">Excluir</button>
+      </div>
+    </div>
+  </dialog>
+
+  <footer class="text-center">
+    <small class="fg-3">Desenvolvido por Vitor Fábio.</small>
+  </footer>
+  <script type="module">
+    import {Toast} from "./bootstrap/dist/js/bootstrap.bundle.min.js";
+
+    $(document).ready(function () {
+      $("#danger-message").hide();
+      $("#success-message").hide();
+
+      $("#updateTable").on("click", fetchData);
+      $("#send-button").on("click", sendData);
+
+      $("#table-line").on("click", ".btn-delete", function () {
+        const id = $(this).attr("data-id");
+        const nome = $(this).attr("data-nome");
+        askDeleteConfirmation(id, nome);
+      });
+
+      $("#cancel-delete").on("click", function () {
+        closeDeleteDialog();
+      });
+
+      $("#confirm-delete").on("click", function () {
+        const id = $("#confirm-delete-dialog").data("id");
+        closeDeleteDialog();
+        deleteData(id);
+      });
+
+      fetchData();
+    });
+
+    const rowTemplate = document.getElementById("row-template");
+    const deleteDialog = document.getElementById("confirm-delete-dialog");
+
+    function askDeleteConfirmation(id, nome) {
+      $("#confirm-delete-dialog").data("id", id);
+      $("#confirm-delete-name").text(nome ?? "");
+      deleteDialog.showModal();
+    }
+
+    function closeDeleteDialog() {
+      deleteDialog.close();
+    }
+
+    function deleteData(id) {
+      const url = `https://epansani.com.br/2026/dwe1/ajax/rem.php`;
+
+      const body = JSON.stringify({
+        id: id,
+      });
+
+      $.ajax({
+        url: url,
+        headers: {"Content-Type": "application/json"},
+        method: 'POST',
+        contentType: 'application/json',
+        data: body,
+        dataType: "json",
+
+        success: function (data) {
+          showToast(data.message, data.ok);
+
+          if (data.ok) fetchData();
+        },
+
+        error: function (xhr) {
+          const message = xhr.responseJSON?.message || "Erro ao excluir contato.";
+          showToast(message, false);
+        }
+      });
+    }
+
+    function sendData() {
+      const url = `https://epansani.com.br/2026/dwe1/ajax/ins.php`;
+
+      const body = JSON.stringify({
+        nome: $("#name").val(),
+        email: $("#email").val()
+      });
+
+      $.ajax({
+        url: url,
+        method: 'POST',
+        headers: {"Content-Type": "application/json"},
+        contentType: 'application/json',
+        data: body,
+        dataType: "json",
+
+        success: function (data) {
+          showToast(data.message, data.ok);
+
+          if (data.ok) fetchData();
+        },
+
+        error: function (xhr) {
+          const message = xhr.responseJSON?.message || "Erro ao cadastrar contato.";
+          showToast(message, false);
+        }
+      });
+    }
+
+    function fetchData() {
+      $("#spinner").removeClass("d-none").addClass("d-block");
+      $("#table-line").empty();
+      const url = `https://epansani.com.br/2026/dwe1/ajax/list.php`;
+      $.ajax({
+        url: url,
+        method: 'GET',
+        headers: {"Content-Type": "application/json"},
+        contentType: 'application/json',
+        dataType: "json",
+        success: function (data) {
+          $("#table-line")[0].replaceChildren(...data.map(renderRow));
+        },
+        error: function (error) {
+          showToast("Falha na comunicação com o servidor.", false);
+          return;
+        },
+        complete: function () {$("#spinner").addClass("d-none").removeClass("d-block")}
+      });
+    }
+
+    function renderRow(item) {
+      const row = rowTemplate.content.cloneNode(true);
+      row.querySelector('[data-field="nome"]').textContent = item.nome;
+      row.querySelector('[data-field="email"]').textContent = item.email;
+
+      const btn = row.querySelector(".btn-delete");
+      btn.setAttribute("aria-label", `Excluir ${item.nome}`);
+      btn.dataset.nome = item.nome;
+      btn.dataset.id = item.id;
+
+      return row;
+    }
+
+    function showToast(message, ok = true) {
+      const el = document.getElementById("toast-feedback");
+
+      el.classList.remove("text-bg-success", "text-bg-danger");
+      el.classList.add(ok ? "text-bg-success" : "text-bg-danger");
+
+      el.querySelector(".toast-body").textContent = message;
+
+      Toast.getOrCreateInstance(el, {
+        delay: 4000
+      }).show();
+    }
+  </script>
+</body>
+
+</html>
