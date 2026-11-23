@@ -16,13 +16,14 @@
 </head>
 
 <body>
-  <header class="m-4">
-    <h1>Contatos</h1>
-    <p class="fg-3">
-      Gerenciamento de contatos
-    </p>
+  <header class="app-hero mb-4">
+    <div class="container-fluid">
+      <h1 class="mb-1">Contatos</h1>
+      <p class="mb-0 opacity-75">Gerenciamento de contatos</p>
+    </div>
   </header>
-  <main>
+
+  <main class="container-fluid px-4 pb-5">
 
     <div class="toast-container position-fixed top-0 end-0 p-3" id="toast-container"></div>
 
@@ -39,64 +40,79 @@
       </div>
     </template>
 
-    <div class="container-fluid">
-      <h5>Cadastrar novo contato</h5>
-        <form>
-          <div class="row g-3">
-            <div class="lg:col-6">
-              <div class="form-floating">
-                <label for="name">Nome</label>
-                <input type="text" class="form-control" id="name" placeholder="Maria">
-              </div>
+    <div class="row g-4">
+
+      <section class="col-12 lg:col-4">
+        <div class="app-card h-100">
+          <div class="app-card-header">
+            <h5 class="mb-0"><i class="bi bi-person-plus me-2" aria-hidden="true"></i>Novo contato</h5>
+          </div>
+          <form class="p-4">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="name" placeholder="Maria">
+              <label for="name">Nome</label>
             </div>
-            <div class="lg:col-6">
-              <div class="form-floating">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="name@example.com">
-              </div>
+            <div class="form-floating mb-4">
+              <input type="email" class="form-control" id="email" placeholder="name@example.com">
+              <label for="email">Email</label>
+            </div>
+            <div class="d-flex gap-2">
+              <button type="button" id="send-button" class="btn-solid theme-primary"><i class="bi bi-floppy me-1" aria-hidden="true"></i>Gravar</button>
+              <button type="reset" class="btn-subtle theme-secondary">Limpar</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="col-12 lg:col-8">
+        <div class="app-card h-100">
+          <div class="app-card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <h5 class="mb-0"><i class="bi bi-people me-2" aria-hidden="true"></i>Contatos cadastrados</h5>
+            <div class="d-flex align-items-center gap-2">
+              <span id="record-count" class="badge badge-subtle theme-info">…</span>
+              <button type="button" id="updateTable" class="btn-icon btn-subtle theme-primary"
+                title="Atualizar lista" aria-label="Atualizar lista">
+                <i class="bi bi-arrow-repeat" aria-hidden="true"></i>
+              </button>
             </div>
           </div>
-          <div class="my-5">
-            <button type="button" id="send-button" class="btn-solid theme-primary">
-              <i class="bi bi-floppy" aria-hidden="true"></i>Gravar</button>
-            <button type="reset" class="btn-subtle theme-secondary">Limpar</button>
+
+          <div id="loading" class="d-none justify-content-center py-3">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Carregando…</span>
+            </div>
           </div>
-        </form>
-        <table class="table table-borderless align-middle font-monospace">
-          <div class="d-flex justify-content-between align-items-center">
-            <h4>Contatos cadastrados</h4>
-            <span id="record-count" class="badge badge-subtle theme-info">…</span>
+
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+              <thead>
+                <tr class="border-bottom">
+                  <th scope="col" class="text-uppercase small fw-normal fg-3 ps-4" style="letter-spacing: .08em;">
+                    Nome / E-mail</th>
+                  <th scope="col" class="text-uppercase small fw-normal fg-3 text-end pe-4" style="letter-spacing: .08em;">
+                    Ação</th>
+                </tr>
+              </thead>
+              <tbody id="table-line"></tbody>
+            </table>
           </div>
-          <thead>
-            <tr class="border-bottom">
-              <th scope="col" class="text-uppercase small fw-normal text-secondary" style="letter-spacing: .08em;">
-                Nome / E-mail</th>
-              <th scope="col" class="text-uppercase small fw-normal text-secondary text-end"
-                style="letter-spacing: .08em;">Ação</th>
-            </tr>
-            <button type="button" id="updateTable" class="lg:col-3 md:col-12 btn-solid theme-primary">
-              <i class="bi bi-arrow-repeat" aria-hidden="true"></i>
-              Atualizar informações da tabela</button>
-          </thead>
-          <tbody id="table-line">
-            <template id="row-template">
-              <tr>
-                <td>
-                  <div class="spinner-border d-none" id="spinner" role="status">
-                    <span class="visually-hidden">Carregando…</span>
-                  </div>
-                  <div class="fw-semibold" data-field="nome"></div>
-                  <div class="small text-secondary" data-field="email"></div>
-                </td>
-                <td class="text-end">
-                  <button type="button" class="btn-icon btn-sm btn-subtle theme-danger rounded-3 btn-delete">
-                    <i class="bi bi-trash3" aria-hidden="true"></i>
-                  </button>
-                </td>
-              </tr>
-            </template>
-          </tbody>
-        </table>
+        </div>
+
+        <template id="row-template">
+          <tr>
+            <td class="ps-4">
+              <div class="fw-semibold" data-field="nome"></div>
+              <div class="small fg-3" data-field="email"></div>
+            </td>
+            <td class="text-end pe-4">
+              <button type="button" class="btn-icon btn-sm btn-subtle theme-danger rounded-3 btn-delete">
+                <i class="bi bi-trash3" aria-hidden="true"></i>
+              </button>
+            </td>
+          </tr>
+        </template>
+      </section>
+
     </div>
   </main>
 
@@ -111,7 +127,7 @@
     </div>
   </dialog>
 
-  <footer class="text-center">
+  <footer class="text-center py-4">
     <small class="fg-3">Desenvolvido por Vitor Fábio.</small>
   </footer>
   <script type="module">
@@ -236,7 +252,7 @@
     }
 
     function fetchData() {
-      $("#spinner").removeClass("d-none").addClass("d-block");
+      $("#loading").removeClass("d-none").addClass("d-flex");
       $("#table-line").empty();
       $("#record-count").text("carregando…");
       const url = `https://epansani.com.br/2026/dwe1/ajax/list.php`;
@@ -255,7 +271,7 @@
           $("#record-count").text("—");
           return;
         },
-        complete: function () {$("#spinner").addClass("d-none").removeClass("d-block")}
+        complete: function () {$("#loading").addClass("d-none").removeClass("d-flex")}
       });
     }
 
