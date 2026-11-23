@@ -23,16 +23,20 @@
   </header>
   <main>
 
-    <div class="toast-container position-fixed top-0 end-0 p-3">
-      <div id="toast-feedback" class="toast align-items-center border-0 text-bg-success" role="alert"
-        aria-live="assertive" aria-atomic="true">
+    <div class="toast-container position-fixed top-0 end-0 p-3" id="toast-container"></div>
+
+    <template id="toast-template">
+      <div class="toast align-items-center border-0" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="d-flex">
-          <div class="toast-body"></div>
+          <div class="toast-body">
+            <div class="fw-bold toast-title"></div>
+            <div class="toast-message"></div>
+          </div>
           <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
             aria-label="Fechar"></button>
         </div>
       </div>
-    </div>
+    </template>
 
     <div class="container-fluid">
       <h5>Cadastrar novo contatos</h4>
@@ -184,24 +188,34 @@
         dataType: "json",
 
         success: function (data) {
-          showToast(data.message, data.ok);
+          showToast(data.ok ? "Contato excluído" : "Erro ao excluir", data.message, data.ok);
 
-          if (data.ok) fetchData();
+          afterSubmit();
         },
 
         error: function (xhr) {
           const message = xhr.responseJSON?.message || "Erro ao excluir contato.";
-          showToast(message, false);
+          showToast("Erro ao excluir", message, false);
+          afterSubmit();
         }
       });
     }
 
     function sendData() {
+      const nome = $("#name").val().trim();
+      const email = $("#email").val().trim();
+
+      const erros = validateContact(nome, email);
+      if (erros.length > 0) {
+        erros.forEach(erro => showToast("Dados inválidos", erro, false));
+        return;
+      }
+
       const url = `https://epansani.com.br/2026/dwe1/ajax/ins.php`;
 
       const body = JSON.stringify({
-        nome: $("#name").val(),
-        email: $("#email").val()
+        nome: nome,
+        email: email
       });
 
       $.ajax({
@@ -213,16 +227,23 @@
         dataType: "json",
 
         success: function (data) {
-          showToast(data.message, data.ok);
+          showToast(data.ok ? "Contato cadastrado" : "Erro ao cadastrar", data.message, data.ok);
 
-          if (data.ok) fetchData();
+          afterSubmit();
         },
 
         error: function (xhr) {
           const message = xhr.responseJSON?.message || "Erro ao cadastrar contato.";
-          showToast(message, false);
+          showToast("Erro ao cadastrar", message, false);
+          afterSubmit();
         }
       });
+    }
+
+    function afterSubmit() {
+      $("#name").val("");
+      $("#email").val("");
+      fetchData();
     }
 
     function fetchData() {
@@ -239,7 +260,7 @@
           $("#table-line")[0].replaceChildren(...data.map(renderRow));
         },
         error: function (error) {
-          showToast("Falha na comunicação com o servidor.", false);
+          showToast("Erro de conexão", "Falha na comunicação com o servidor.", false);
           return;
         },
         complete: function () {$("#spinner").addClass("d-none").removeClass("d-block")}
@@ -259,17 +280,41 @@
       return row;
     }
 
-    function showToast(message, ok = true) {
-      const el = document.getElementById("toast-feedback");
+    function showToast(title, message, ok = true) {
+      const el = document.getElementById("toast-template").content.firstElementChild.cloneNode(true);
 
-      el.classList.remove("text-bg-success", "text-bg-danger");
       el.classList.add(ok ? "text-bg-success" : "text-bg-danger");
+      el.querySelector(".toast-title").textContent = title;
+      el.querySelector(".toast-message").textContent = message;
 
-      el.querySelector(".toast-body").textContent = message;
+      el.addEventListener("hidden.bs.toast", () => el.remove());
+      document.getElementById("toast-container").appendChild(el);
 
       Toast.getOrCreateInstance(el, {
         delay: 4000
       }).show();
+    }
+
+    function validateContact(nome, email) {
+      const erros = [];
+
+      if (!nome) {
+        erros.push("O campo Nome é obrigatório.");
+      } else if (nome.length < 3) {
+        erros.push("O nome deve ter pelo menos 3 caracteres.");
+      } else if (nome.length > 100) {
+        erros.push("O nome deve ter no máximo 100 caracteres.");
+      }
+
+      if (!email) {
+        erros.push("O campo Email é obrigatório.");
+      } else if (email.length > 255) {
+        erros.push("O e-mail deve ter no máximo 255 caracteres.");
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        erros.push("Informe um e-mail válido (ex.: nome@dominio.com).");
+      }
+
+      return erros;
     }
   </script>
 </body>
