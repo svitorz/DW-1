@@ -14,9 +14,6 @@ body {
 
 /* Paleta da aplicação */
 :root {
-  --app-primary: var(--bs-indigo-500);
-  --app-primary-strong: var(--bs-indigo-600);
-  --app-accent: var(--bs-teal-500);
   --app-gradient: linear-gradient(135deg, var(--bs-indigo-600), var(--bs-violet-500) 55%, var(--bs-teal-500));
   --app-surface: #ffffff;
   --app-page-bg: #f4f3ff;
