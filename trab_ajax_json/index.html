@@ -69,7 +69,7 @@
         <table class="table table-borderless align-middle font-monospace">
           <div class="d-flex justify-content-between align-items-center">
             <h4>Contatos cadastrados</h4>
-            <span class="badge badge-subtle theme-info float-end">2 registros</span>
+            <span id="record-count" class="badge badge-subtle theme-info">…</span>
           </div>
           <thead>
             <tr class="border-bottom">
@@ -246,9 +246,15 @@
       fetchData();
     }
 
+    function updateRecordCount(total) {
+      const texto = total === 1 ? "1 registro" : `${total} registros`;
+      $("#record-count").text(texto);
+    }
+
     function fetchData() {
       $("#spinner").removeClass("d-none").addClass("d-block");
       $("#table-line").empty();
+      $("#record-count").text("carregando…");
       const url = `https://epansani.com.br/2026/dwe1/ajax/list.php`;
       $.ajax({
         url: url,
@@ -258,9 +264,11 @@
         dataType: "json",
         success: function (data) {
           $("#table-line")[0].replaceChildren(...data.map(renderRow));
+          updateRecordCount(data.length);
         },
         error: function (error) {
           showToast("Erro de conexão", "Falha na comunicação com o servidor.", false);
+          $("#record-count").text("—");
           return;
         },
         complete: function () {$("#spinner").addClass("d-none").removeClass("d-block")}
