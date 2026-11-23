@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Trabalho JSON com Ajax</title>
+  <title>Contatos · Gerenciamento</title>
+  <link rel="icon" type="image/svg+xml" href="./img/favicon.svg">
   <!-- Bootstrap CSS -->
   <link href="./bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./bootstrap-icons/font/bootstrap-icons.min.css">
@@ -17,9 +18,12 @@
 
 <body>
   <header class="app-hero mb-4">
-    <div class="container-fluid">
-      <h1 class="mb-1">Contatos</h1>
-      <p class="mb-0 opacity-75">Gerenciamento de contatos</p>
+    <div class="container-fluid d-flex align-items-center gap-3">
+      <img src="./img/favicon.svg" alt="" width="48" height="48" class="rounded-3 shadow-sm">
+      <div>
+        <h1 class="mb-1">Contatos</h1>
+        <p class="mb-0 opacity-75">Gerenciamento de contatos</p>
+      </div>
     </div>
   </header>
 
@@ -31,11 +35,13 @@
       <div class="toast align-items-center border-0" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="d-flex">
           <div class="toast-body">
-            <div class="fw-bold toast-title"></div>
+            <div class="fw-bold toast-title d-flex align-items-center gap-2">
+              <i class="bi toast-icon" aria-hidden="true"></i>
+              <span class="toast-title-text"></span>
+            </div>
             <div class="toast-message"></div>
           </div>
-          <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
-            aria-label="Fechar"></button>
+          <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Fechar"></button>
         </div>
       </div>
     </template>
@@ -48,16 +54,23 @@
             <h5 class="mb-0"><i class="bi bi-person-plus me-2" aria-hidden="true"></i>Novo contato</h5>
           </div>
           <form class="p-4">
-            <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="name" placeholder="Maria">
-              <label for="name">Nome</label>
+            <div class="mb-3">
+              <label for="name" class="form-label fg-2">Nome</label>
+              <div class="input-group">
+                <span class="input-group-text fg-3"><i class="bi bi-person" aria-hidden="true"></i></span>
+                <input type="text" class="form-control" id="name" placeholder="Maria">
+              </div>
             </div>
-            <div class="form-floating mb-4">
-              <input type="email" class="form-control" id="email" placeholder="name@example.com">
-              <label for="email">Email</label>
+            <div class="mb-4">
+              <label for="email" class="form-label fg-2">Email</label>
+              <div class="input-group">
+                <span class="input-group-text fg-3"><i class="bi bi-envelope" aria-hidden="true"></i></span>
+                <input type="email" class="form-control" id="email" placeholder="name@example.com">
+              </div>
             </div>
             <div class="d-flex gap-2">
-              <button type="button" id="send-button" class="btn-solid theme-primary"><i class="bi bi-floppy me-1" aria-hidden="true"></i>Gravar</button>
+              <button type="button" id="send-button" class="btn-solid theme-primary"><i class="bi bi-floppy me-1"
+                  aria-hidden="true"></i>Gravar</button>
               <button type="reset" class="btn-subtle theme-secondary">Limpar</button>
             </div>
           </form>
@@ -70,8 +83,8 @@
             <h5 class="mb-0"><i class="bi bi-people me-2" aria-hidden="true"></i>Contatos cadastrados</h5>
             <div class="d-flex align-items-center gap-2">
               <span id="record-count" class="badge badge-subtle theme-info">…</span>
-              <button type="button" id="updateTable" class="btn-icon btn-subtle theme-primary"
-                title="Atualizar lista" aria-label="Atualizar lista">
+              <button type="button" id="updateTable" class="btn-icon btn-subtle theme-primary" title="Atualizar lista"
+                aria-label="Atualizar lista">
                 <i class="bi bi-arrow-repeat" aria-hidden="true"></i>
               </button>
             </div>
@@ -89,7 +102,8 @@
                 <tr class="border-bottom">
                   <th scope="col" class="text-uppercase small fw-normal fg-3 ps-4" style="letter-spacing: .08em;">
                     Nome / E-mail</th>
-                  <th scope="col" class="text-uppercase small fw-normal fg-3 text-end pe-4" style="letter-spacing: .08em;">
+                  <th scope="col" class="text-uppercase small fw-normal fg-3 text-end pe-4"
+                    style="letter-spacing: .08em;">
                     Ação</th>
                 </tr>
               </thead>
@@ -101,8 +115,13 @@
         <template id="row-template">
           <tr>
             <td class="ps-4">
-              <div class="fw-semibold" data-field="nome"></div>
-              <div class="small fg-3" data-field="email"></div>
+              <div class="d-flex align-items-center gap-3">
+                <span class="avatar avatar-sm avatar-subtle" data-field="avatar"></span>
+                <div>
+                  <div class="fw-semibold" data-field="nome"></div>
+                  <div class="small fg-3" data-field="email"></div>
+                </div>
+              </div>
             </td>
             <td class="text-end pe-4">
               <button type="button" class="btn-icon btn-sm btn-subtle theme-danger rounded-3 btn-delete">
@@ -116,27 +135,30 @@
     </div>
   </main>
 
-  <dialog id="confirm-delete-dialog" class="rounded-3 border-0 shadow p-0">
-    <div class="p-4">
-      <h5 class="mb-3">Confirmar exclusão</h5>
-      <p class="mb-4">Tem certeza que deseja excluir o contato <strong id="confirm-delete-name"></strong>? Esta ação não pode ser desfeita.</p>
-      <div class="d-flex justify-content-end gap-2">
-        <button type="button" class="btn btn-secondary" id="cancel-delete">Cancelar</button>
-        <button type="button" class="btn btn-danger" id="confirm-delete">Excluir</button>
-      </div>
+  <dialog id="confirm-delete-dialog" class="dialog">
+    <div class="dialog-header">
+      <i class="bi bi-exclamation-triangle-fill fg-danger me-2" aria-hidden="true"></i>
+      <h5 class="mb-0">Confirmar exclusão</h5>
+    </div>
+    <div class="dialog-body">
+      <p class="mb-0">Tem certeza que deseja excluir o contato <strong id="confirm-delete-name"></strong>? Esta ação não
+        pode ser desfeita.</p>
+    </div>
+    <div class="dialog-footer">
+      <button type="button" class="btn-subtle theme-secondary" id="cancel-delete">Cancelar</button>
+      <button type="button" class="btn-solid theme-danger" id="confirm-delete"><i class="bi bi-trash3 me-1"
+          aria-hidden="true"></i>Excluir</button>
     </div>
   </dialog>
 
   <footer class="text-center py-4">
-    <small class="fg-3">Desenvolvido por Vitor Fábio.</small>
+    <small class="fg-3">Desenvolvido por Vitor Fábio. <i class="bi bi-heart-fill fg-danger"
+        aria-hidden="true"></i></small>
   </footer>
   <script type="module">
     import {Toast} from "./bootstrap/dist/js/bootstrap.bundle.min.js";
 
     $(document).ready(function () {
-      $("#danger-message").hide();
-      $("#success-message").hide();
-
       $("#updateTable").on("click", fetchData);
       $("#send-button").on("click", sendData);
 
@@ -161,6 +183,7 @@
 
     const rowTemplate = document.getElementById("row-template");
     const deleteDialog = document.getElementById("confirm-delete-dialog");
+    const temasAvatar = ["theme-primary", "theme-info", "theme-success", "theme-warning", "theme-accent"];
 
     function askDeleteConfirmation(id, nome) {
       $("#confirm-delete-dialog").data("id", id);
@@ -188,13 +211,13 @@
         dataType: "json",
 
         success: function (data) {
-          showToast(data.ok ? "Contato excluído" : "Erro ao excluir", data.message, data.ok);
+          showToast(data.ok ? "Contato excluído" : "Erro ao excluir", mensagemDaApi(data, "Operação concluída."), data.ok);
 
           afterSubmit();
         },
 
         error: function (xhr) {
-          const message = xhr.responseJSON?.message || "Erro ao excluir contato.";
+          const message = mensagemDaApi(xhr.responseJSON, "Erro ao excluir contato.");
           showToast("Erro ao excluir", message, false);
           afterSubmit();
         }
@@ -218,6 +241,8 @@
         email: email
       });
 
+      $("#send-button").prop("disabled", true);
+
       $.ajax({
         url: url,
         method: 'POST',
@@ -227,15 +252,19 @@
         dataType: "json",
 
         success: function (data) {
-          showToast(data.ok ? "Contato cadastrado" : "Erro ao cadastrar", data.message, data.ok);
+          showToast(data.ok ? "Contato cadastrado" : "Erro ao cadastrar", mensagemDaApi(data, "Operação concluída."), data.ok);
 
           afterSubmit();
         },
 
         error: function (xhr) {
-          const message = xhr.responseJSON?.message || "Erro ao cadastrar contato.";
+          const message = mensagemDaApi(xhr.responseJSON, "Erro ao cadastrar contato.");
           showToast("Erro ao cadastrar", message, false);
           afterSubmit();
+        },
+
+        complete: function () {
+          $("#send-button").prop("disabled", false);
         }
       });
     }
@@ -256,6 +285,7 @@
       $("#table-line").empty();
       $("#record-count").text("carregando…");
       const url = `https://epansani.com.br/2026/dwe1/ajax/list.php`;
+
       $.ajax({
         url: url,
         method: 'GET',
@@ -263,7 +293,11 @@
         contentType: 'application/json',
         dataType: "json",
         success: function (data) {
-          $("#table-line")[0].replaceChildren(...data.map(renderRow));
+          if (data.length === 0) {
+            $("#table-line")[0].replaceChildren(renderEmpty());
+          } else {
+            $("#table-line")[0].replaceChildren(...data.map(renderRow));
+          }
           updateRecordCount(data.length);
         },
         error: function (error) {
@@ -278,7 +312,17 @@
     function renderRow(item) {
       const row = rowTemplate.content.cloneNode(true);
       row.querySelector('[data-field="nome"]').textContent = item.nome;
-      row.querySelector('[data-field="email"]').textContent = item.email;
+
+      const avatar = row.querySelector('[data-field="avatar"]');
+      avatar.textContent = iniciais(item.nome);
+      avatar.classList.add(temaPorNome(item.nome));
+
+      const emailEl = row.querySelector('[data-field="email"]');
+      const link = document.createElement("a");
+      link.href = `mailto:${item.email}`;
+      link.className = "fg-2";
+      link.textContent = item.email;
+      emailEl.replaceChildren(link);
 
       const btn = row.querySelector(".btn-delete");
       btn.setAttribute("aria-label", `Excluir ${item.nome}`);
@@ -288,11 +332,45 @@
       return row;
     }
 
+    function renderEmpty() {
+      const tr = document.createElement("tr");
+      const td = document.createElement("td");
+      td.colSpan = 2;
+      td.className = "text-center py-5 fg-3";
+
+      const icon = document.createElement("i");
+      icon.className = "bi bi-inbox d-block mb-2";
+      icon.style.fontSize = "2.5rem";
+      icon.setAttribute("aria-hidden", "true");
+
+      td.append(icon, "Nenhum contato cadastrado ainda");
+      tr.append(td);
+      return tr;
+    }
+
+    function iniciais(nome) {
+      const partes = nome.trim().split(/\s+/);
+      const primeira = partes[0]?.charAt(0) ?? "";
+      const ultima = partes.length > 1 ? partes[partes.length - 1].charAt(0) : "";
+      return (primeira + ultima).toUpperCase();
+    }
+
+    function temaPorNome(nome) {
+      let soma = 0;
+      for (const c of nome) soma += c.charCodeAt(0);
+      return temasAvatar[soma % temasAvatar.length];
+    }
+
+    function mensagemDaApi(resposta, padrao) {
+      return resposta?.mensagem ?? resposta?.message ?? padrao;
+    }
+
     function showToast(title, message, ok = true) {
       const el = document.getElementById("toast-template").content.firstElementChild.cloneNode(true);
 
       el.classList.add(...(ok ? ["bg-success", "fg-contrast-success"] : ["bg-danger", "fg-contrast-danger"]));
-      el.querySelector(".toast-title").textContent = title;
+      el.querySelector(".toast-icon").classList.add(ok ? "bi-check-circle-fill" : "bi-x-circle-fill");
+      el.querySelector(".toast-title-text").textContent = title;
       el.querySelector(".toast-message").textContent = message;
 
       el.addEventListener("hidden.bs.toast", () => el.remove());
