@@ -6,3 +6,8 @@ body {
   font-family: "JetBrains Mono", monospace !important;
   font-optical-sizing: auto;
 }
+
+/* Botão de fechar branco nos toasts coloridos (o btn-close padrão é escuro) */
+.toast[class*="bg-"] .btn-close {
+  filter: invert(1) grayscale(1) brightness(2);
+}
