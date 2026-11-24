@@ -6,6 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contatos · Gerenciamento</title>
   <link rel="icon" type="image/svg+xml" href="./img/favicon.svg">
+  <script>
+    // Aplica o tema salvo antes da página renderizar, para não piscar o tema claro.
+    (function () {
+      try {
+        const salvo = localStorage.getItem("tema");
+        if (salvo === "dark" || salvo === "light") {
+          document.documentElement.setAttribute("data-bs-theme", salvo);
+        }
+      } catch (e) {
+        // localStorage indisponível (ex.: navegador bloqueou): segue com o tema claro padrão
+      }
+    })();
+  </script>
   <!-- Bootstrap CSS -->
   <link href="./bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./bootstrap-icons/font/bootstrap-icons.min.css">
@@ -24,6 +37,10 @@
         <h1 class="mb-1">Contatos</h1>
         <p class="mb-0 opacity-75">Gerenciamento de contatos</p>
       </div>
+      <button type="button" id="toggle-tema" class="btn-icon btn-subtle theme-secondary ms-auto"
+        aria-label="Usar tema escuro" title="Alternar tema">
+        <i class="bi bi-moon-stars" aria-hidden="true"></i>
+      </button>
     </div>
   </header>
 
@@ -157,6 +174,8 @@
   <script>
     $(document).ready(function () {
       $("#updateTable").on("click", atualizarManual);
+      $("#toggle-tema").on("click", alternarTema);
+      aplicarTema(temaAtual());
       $("#send-button").on("click", sendData);
 
       $("#table-line").on("click", ".btn-delete", function () {
@@ -177,6 +196,31 @@
 
       fetchData();
     });
+
+    function temaAtual() {
+      return document.documentElement.getAttribute("data-bs-theme") === "dark" ? "dark" : "light";
+    }
+
+    function aplicarTema(tema) {
+      document.documentElement.setAttribute("data-bs-theme", tema);
+      const escuro = tema === "dark";
+      $("#toggle-tema i").attr("class", escuro ? "bi bi-sun" : "bi bi-moon-stars");
+      $("#toggle-tema").attr("aria-label", escuro ? "Usar tema claro" : "Usar tema escuro");
+    }
+
+    function alternarTema() {
+      const novo = temaAtual() === "dark" ? "light" : "dark";
+      aplicarTema(novo);
+      salvarTema(novo);
+    }
+
+    function salvarTema(tema) {
+      try {
+        localStorage.setItem("tema", tema);
+      } catch (e) {
+        // sem localStorage: o tema vale só nesta visita
+      }
+    }
 
     const rowTemplate = document.getElementById("row-template");
     const deleteDialog = document.getElementById("confirm-delete-dialog");

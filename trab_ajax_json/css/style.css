@@ -27,6 +27,13 @@ body {
   --bs-primary-bg-subtle: light-dark(var(--bs-indigo-100), var(--bs-indigo-900));
 }
 
+/* Modo escuro: sobrescreve só as variáveis próprias; o resto vem do Bootstrap */
+[data-bs-theme="dark"] {
+  --app-page-bg: #13121f;
+  --app-surface: #1d1b2e;
+  --app-shadow: 0 10px 30px -12px rgb(0 0 0 / .6);
+}
+
 body {
   background: var(--app-page-bg);
   min-height: 100vh;
