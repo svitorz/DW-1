@@ -1,79 +1,256 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
-
-*,
-html,
-body {
-  font-family: "JetBrains Mono", monospace !important;
-  font-optical-sizing: auto;
-}
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&display=swap');
 
 /* Botão de fechar branco nos toasts coloridos (o btn-close padrão é escuro) */
 .toast[class*="bg-"] .btn-close {
   filter: invert(1) grayscale(1) brightness(2);
 }
 
-/* Paleta da aplicação */
+/* Paleta "Caderneta A–Z" */
 :root {
-  --app-gradient: linear-gradient(135deg, var(--bs-indigo-600), var(--bs-violet-500) 55%, var(--bs-teal-500));
-  --app-surface: #ffffff;
-  --app-page-bg: #f4f3ff;
-  --app-radius: 1rem;
-  --app-shadow: 0 10px 30px -12px rgb(79 70 229 / .25);
+  --ct-papel: #EEF2F6;
+  --ct-ficha: #FFFFFF;
+  --ct-tinta: #1B2540;
+  --ct-tinta-suave: #5A6782;
+  --ct-pauta: #C7DAEE;
+  --ct-caneta: #2448C8;
+  --ct-caneta-fundo: #E3EAFB;
+  --ct-vermelho: #C8352B;
 
-  /* Faz o tema "primary" do Bootstrap usar o índigo */
-  --bs-primary-base: var(--bs-indigo-500);
-  --bs-primary-bg: var(--bs-indigo-500);
-  --bs-primary-fg: light-dark(var(--bs-indigo-600), var(--bs-indigo-400));
-  --bs-primary-bg-subtle: light-dark(var(--bs-indigo-100), var(--bs-indigo-900));
+  /* O tema "primary" do Bootstrap passa a ser o azul de caneta */
+  --bs-primary-base: var(--ct-caneta);
+  --bs-primary-bg: var(--ct-caneta);
+  --bs-primary-fg: var(--ct-caneta);
+  --bs-primary-bg-subtle: var(--ct-caneta-fundo);
+  --bs-primary-contrast: #FFFFFF;
 }
 
-/* Modo escuro: sobrescreve só as variáveis próprias; o resto vem do Bootstrap */
 [data-bs-theme="dark"] {
-  --app-page-bg: #13121f;
-  --app-surface: #1d1b2e;
-  --app-shadow: 0 10px 30px -12px rgb(0 0 0 / .6);
+  --ct-papel: #0F1522;
+  --ct-ficha: #172036;
+  --ct-tinta: #E4EAF5;
+  --ct-tinta-suave: #9AA8C2;
+  --ct-pauta: #2A3B5C;
+  --ct-caneta: #8AA6FF;
+  --ct-caneta-fundo: #1E2C52;
+  --ct-vermelho: #FF7A6E;
+  --bs-primary-contrast: #0F1522;
 }
 
 body {
-  background: var(--app-page-bg);
+  font-family: "Archivo", system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ct-tinta);
+  background: var(--ct-papel);
   min-height: 100vh;
+}
+
+.dado {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: .875rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ct-caneta);
+  outline-offset: 2px;
+}
+
+.ct-tinta-suave {
+  color: var(--ct-tinta-suave);
+}
+
+.spinner-border {
+  color: var(--ct-caneta);
+}
+
+/* Cabeçalho */
+.ct-topo {
+  padding: 2.5rem 0 1.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--ct-pauta);
+}
+
+.ct-titulo {
+  font-size: 3rem;
+  font-stretch: 125%;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.ct-subtitulo {
+  color: var(--ct-tinta-suave);
+  margin: .5rem 0 0;
+}
+
+@media (max-width: 575.98px) {
+  .ct-titulo { font-size: 2.25rem; }
+}
+
+/* Painéis */
+.ct-painel,
+.ct-ficha {
+  background: var(--ct-ficha);
+  border: 1.5px solid var(--ct-pauta);
+  border-radius: 8px;
+}
+
+.ct-ficha {
+  border-top: 3px solid var(--ct-caneta);
+}
+
+.ct-cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--ct-pauta);
+}
+
+.ct-secao {
+  font-size: 1.3125rem;
+  font-stretch: 110%;
+  font-weight: 650;
+  margin: 0;
+}
+
+.ct-contador {
+  color: var(--ct-tinta-suave);
+  font-size: .875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Lista agrupada por letra */
+.ct-tabela { margin: 0; }
+
+.ct-tabela > :not(caption) > * > * {
+  background-color: transparent;
+  border-color: var(--ct-pauta);
+  color: var(--ct-tinta);
+  padding: .75rem 1.25rem;
+}
+
+.ct-tabela thead th {
+  font-weight: 500;
+  font-size: .875rem;
+  color: var(--ct-tinta-suave);
+}
+
+.ct-grupo th {
+  font-size: 1.5rem;
+  font-stretch: 125%;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ct-caneta);
+  padding-top: .875rem;
+  padding-bottom: .5rem;
+  border-bottom: 2px solid var(--ct-pauta);
+  scroll-margin-top: 1rem;
+}
+
+.ct-tabela .col-email a {
+  color: var(--ct-tinta-suave);
+  text-decoration: none;
+}
+
+.ct-tabela .col-email a:hover {
+  color: var(--ct-caneta);
+  text-decoration: underline;
+}
+
+@media (max-width: 575.98px) {
+  .ct-grupo th {
+    font-size: 1.25rem;
+    padding-top: .75rem;
+  }
+  .ct-tabela thead { display: none; }
+  /* Cada contato vira um bloco: nome e botão na 1ª linha, e-mail na 2ª */
+  .ct-tabela tr.ct-linha {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    border-bottom: 1px solid var(--ct-pauta);
+    padding: .5rem 0;
+  }
+  .ct-tabela tr.ct-linha > td {
+    border: 0;
+    padding: .125rem .75rem;
+  }
+  .ct-tabela tr.ct-linha > .col-nome {
+    flex: 1 1 0;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .ct-tabela tr.ct-linha > .col-acao {
+    flex: 0 0 auto;
+  }
+  .ct-tabela tr.ct-linha > .col-email {
+    order: 1;
+    flex: 1 0 100%;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    padding-top: 0;
+  }
+}
+
+/* Corpo da ficha: lista + índice A–Z lado a lado no desktop */
+.ct-ficha-corpo { display: grid; grid-template-columns: 1fr auto; }
+
+.ct-indice {
   display: flex;
   flex-direction: column;
+  order: 2; /* no DOM o índice vem antes da tabela (Tab), mas aparece à direita */
+  align-self: start;
+  position: sticky;
+  top: 1rem;
+  padding: .5rem .25rem;
+  border-left: 1px solid var(--ct-pauta);
 }
 
-main {
-  flex: 1;
+.ct-aba {
+  display: block;
+  width: 2rem;
+  padding: .125rem 0;
+  text-align: center;
+  font-size: .8125rem;
+  font-stretch: 125%;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ct-caneta);
+  text-decoration: none;
+  border-radius: 0 4px 4px 0;
 }
 
-/* Cabeçalho colorido */
-.app-hero {
-  background: var(--app-gradient);
-  color: #fff;
-  padding: 2rem 1.5rem;
-  border-radius: 0 0 var(--app-radius) var(--app-radius);
-  box-shadow: var(--app-shadow);
+a.ct-aba:hover,
+a.ct-aba:focus-visible { background: var(--ct-caneta-fundo); }
+
+.ct-aba.is-vazia { color: var(--ct-tinta-suave); opacity: .4; }
+
+/* Destaque da letra escolhida (única animação da página) */
+html { scroll-behavior: smooth; }
+
+.ct-grupo th:target {
+  background: var(--ct-caneta-fundo);
+  transition: background-color .6s ease;
 }
 
-/* Cartões */
-.app-card {
-  background: var(--app-surface);
-  border: 0;
-  border-radius: var(--app-radius);
-  box-shadow: var(--app-shadow);
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .ct-grupo th:target { transition: none; }
 }
 
-.app-card-header {
-  border-bottom: 1px solid rgb(0 0 0 / .06);
-  padding: 1rem 1.25rem;
-}
-
-/* Botão Gravar com o gradiente da marca */
-#send-button {
-  background: var(--app-gradient);
-  border: 0;
-  color: #fff;
-}
-
-#send-button:hover {
-  filter: brightness(1.08);
+@media (max-width: 991.98px) {
+  .ct-ficha-corpo { grid-template-columns: 1fr; }
+  .ct-indice {
+    order: -1;
+    flex-direction: row;
+    overflow-x: auto;
+    position: static;
+    border-left: 0;
+    border-bottom: 1px solid var(--ct-pauta);
+    padding: .25rem .75rem;
+  }
+  .ct-aba { width: auto; min-width: 1.75rem; padding: .375rem .25rem; border-radius: 4px; }
 }

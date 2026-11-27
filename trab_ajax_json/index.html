@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contatos · Gerenciamento</title>
+  <title>Contatos</title>
   <link rel="icon" type="image/svg+xml" href="./img/favicon.svg">
   <script>
     // Aplica o tema salvo antes da página renderizar, para não piscar o tema claro.
@@ -30,12 +30,11 @@
 </head>
 
 <body>
-  <header class="app-hero mb-4">
-    <div class="container-fluid d-flex align-items-center gap-3">
-      <img src="./img/favicon.svg" alt="" width="48" height="48" class="rounded-3 shadow-sm">
+  <header class="ct-topo">
+    <div class="container-fluid px-4 d-flex align-items-end flex-wrap gap-3">
       <div>
-        <h1 class="mb-1">Contatos</h1>
-        <p class="mb-0 opacity-75">Gerenciamento de contatos</p>
+        <h1 class="ct-titulo">Contatos</h1>
+        <p class="ct-subtitulo">Trabalho T2 de Ajax com JSON, por Vitor Fábio</p>
       </div>
       <button type="button" id="toggle-tema" class="btn-icon btn-subtle theme-secondary ms-auto"
         aria-label="Usar tema escuro" title="Alternar tema">
@@ -66,40 +65,34 @@
     <div class="row g-4">
 
       <section class="col-12 lg:col-4">
-        <div class="app-card h-100">
-          <div class="app-card-header">
-            <h5 class="mb-0"><i class="bi bi-person-plus me-2" aria-hidden="true"></i>Novo contato</h5>
+        <div class="ct-painel h-100">
+          <div class="ct-cabecalho">
+            <h2 class="ct-secao">Novo contato</h2>
           </div>
           <form class="p-4">
             <div class="mb-3">
-              <label for="name" class="form-label fg-2">Nome</label>
-              <div class="input-group">
-                <span class="input-group-text fg-3"><i class="bi bi-person" aria-hidden="true"></i></span>
-                <input type="text" class="form-control" id="name" placeholder="Maria">
-              </div>
+              <label for="name" class="form-label">Nome</label>
+              <input type="text" class="form-control" id="name" placeholder="Ana Souza">
             </div>
             <div class="mb-4">
-              <label for="email" class="form-label fg-2">Email</label>
-              <div class="input-group">
-                <span class="input-group-text fg-3"><i class="bi bi-envelope" aria-hidden="true"></i></span>
-                <input type="email" class="form-control" id="email" placeholder="name@example.com">
-              </div>
+              <label for="email" class="form-label">E-mail</label>
+              <input type="email" class="form-control" id="email" placeholder="ana@exemplo.com">
             </div>
             <div class="d-flex gap-2">
               <button type="button" id="send-button" class="btn-solid theme-primary"><i class="bi bi-floppy me-1"
                   aria-hidden="true"></i>Gravar</button>
-              <button type="reset" class="btn-subtle theme-secondary">Limpar</button>
+              <button type="reset" class="btn-outline theme-secondary">Limpar</button>
             </div>
           </form>
         </div>
       </section>
 
       <section class="col-12 lg:col-8">
-        <div class="app-card h-100">
-          <div class="app-card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
-            <h5 class="mb-0"><i class="bi bi-people me-2" aria-hidden="true"></i>Contatos cadastrados</h5>
-            <div class="d-flex align-items-center flex-wrap gap-2">
-              <span id="record-count" class="badge badge-subtle theme-info">…</span>
+        <div class="ct-ficha h-100">
+          <div class="ct-cabecalho">
+            <h2 class="ct-secao">Contatos cadastrados</h2>
+            <div class="d-flex align-items-center flex-wrap gap-2 ms-auto">
+              <span id="record-count" class="ct-contador">…</span>
               <button type="button" id="updateTable" class="btn-subtle theme-primary btn-sm">
                 <i class="bi bi-arrow-repeat me-1" aria-hidden="true"></i><span>Atualizar dados da tabela</span>
               </button>
@@ -112,36 +105,30 @@
             </div>
           </div>
 
-          <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0">
-              <thead>
-                <tr class="border-bottom">
-                  <th scope="col" class="text-uppercase small fw-normal fg-3 ps-4" style="letter-spacing: .08em;">
-                    Nome / E-mail</th>
-                  <th scope="col" class="text-uppercase small fw-normal fg-3 text-end pe-4"
-                    style="letter-spacing: .08em;">
-                    Ação</th>
-                </tr>
-              </thead>
-              <tbody id="table-line"></tbody>
-            </table>
+          <div class="ct-ficha-corpo">
+            <nav id="indice-letras" class="ct-indice" aria-label="Índice alfabético"></nav>
+            <div class="table-responsive ct-lista">
+              <table class="table ct-tabela align-middle mb-0">
+                <thead>
+                  <tr class="border-bottom">
+                    <th scope="col" class="fw-normal ct-tinta-suave ps-4">Nome</th>
+                    <th scope="col" class="fw-normal ct-tinta-suave">E-mail</th>
+                    <th scope="col" class="fw-normal ct-tinta-suave text-end pe-4">Ação</th>
+                  </tr>
+                </thead>
+                <tbody id="table-line"></tbody>
+              </table>
+            </div>
           </div>
         </div>
 
         <template id="row-template">
-          <tr>
-            <td class="ps-4">
-              <div class="d-flex align-items-center gap-3">
-                <span class="avatar avatar-sm avatar-subtle" data-field="avatar"></span>
-                <div>
-                  <div class="fw-semibold" data-field="nome"></div>
-                  <div class="small fg-3" data-field="email"></div>
-                </div>
-              </div>
-            </td>
-            <td class="text-end pe-4">
-              <button type="button" class="btn-icon btn-sm btn-subtle theme-danger rounded-3 btn-delete">
-                <i class="bi bi-trash3" aria-hidden="true"></i>
+          <tr class="ct-linha">
+            <td class="col-nome ps-4 fw-semibold" data-field="nome"></td>
+            <td class="col-email" data-field="email"></td>
+            <td class="col-acao text-end pe-4">
+              <button type="button" class="btn-outline theme-danger btn-sm btn-delete">
+                <i class="bi bi-trash3 me-1" aria-hidden="true"></i>Excluir
               </button>
             </td>
           </tr>
@@ -154,11 +141,11 @@
   <dialog id="confirm-delete-dialog" class="dialog">
     <div class="dialog-header">
       <i class="bi bi-exclamation-triangle-fill fg-danger me-2" aria-hidden="true"></i>
-      <h5 class="mb-0">Confirmar exclusão</h5>
+      <h5 class="mb-0">Excluir contato?</h5>
     </div>
     <div class="dialog-body">
-      <p class="mb-0">Tem certeza que deseja excluir o contato <strong id="confirm-delete-name"></strong>? Esta ação não
-        pode ser desfeita.</p>
+      <p class="mb-0"><strong id="confirm-delete-name"></strong> será excluído do banco compartilhado da turma.
+        Isso não pode ser desfeito.</p>
     </div>
     <div class="dialog-footer">
       <button type="button" class="btn-subtle theme-secondary" id="cancel-delete">Cancelar</button>
@@ -167,16 +154,20 @@
     </div>
   </dialog>
 
-  <footer class="text-center py-4">
-    <small class="fg-3">Desenvolvido por Vitor Fábio. <i class="bi bi-heart-fill fg-danger"
-        aria-hidden="true"></i></small>
-  </footer>
   <script>
     $(document).ready(function () {
       $("#updateTable").on("click", atualizarManual);
       $("#toggle-tema").on("click", alternarTema);
       aplicarTema(temaAtual());
       $("#send-button").on("click", sendData);
+
+      // Enter nos campos envia, mas só se nome e e-mail estiverem preenchidos
+      $("#name, #email").on("keydown", function (e) {
+        if (e.key !== "Enter") return;
+        e.preventDefault();
+        const preenchidos = $("#name").val().trim() && $("#email").val().trim();
+        if (preenchidos && !$("#send-button").prop("disabled")) sendData();
+      });
 
       $("#table-line").on("click", ".btn-delete", function () {
         const id = $(this).attr("data-id");
@@ -224,7 +215,6 @@
 
     const rowTemplate = document.getElementById("row-template");
     const deleteDialog = document.getElementById("confirm-delete-dialog");
-    const temasAvatar = ["theme-primary", "theme-info", "theme-success", "theme-warning", "theme-accent"];
     const ESPERA_ATUALIZAR_MS = 5000; // 5 segundos entre atualizações manuais
     let atualizarLiberadoEm = 0;
     let requisicaoLista = null;
@@ -255,14 +245,14 @@
         dataType: "json",
 
         success: function (data) {
-          showToast(data.ok ? "Contato excluído" : "Erro ao excluir", mensagemDaApi(data, "Operação concluída."), data.ok);
+          showToast(data.ok ? "Contato excluído" : "Não foi possível excluir", mensagemDaApi(data, "Operação concluída."), data.ok);
 
           fetchData();
         },
 
         error: function (xhr) {
           const message = mensagemDaApi(xhr.responseJSON, "Erro ao excluir contato.");
-          showToast("Erro ao excluir", message, false);
+          showToast("Não foi possível excluir", message, false);
           fetchData();
         }
       });
@@ -274,7 +264,7 @@
 
       const erros = validateContact(nome, email);
       if (erros.length > 0) {
-        erros.forEach(erro => showToast("Dados inválidos", erro, false));
+        erros.forEach(erro => showToast("Verifique o formulário", erro, false));
         return;
       }
 
@@ -296,7 +286,7 @@
         dataType: "json",
 
         success: function (data) {
-          showToast(data.ok ? "Contato cadastrado" : "Erro ao cadastrar", mensagemDaApi(data, "Operação concluída."), data.ok);
+          showToast(data.ok ? "Contato gravado" : "Não foi possível gravar", mensagemDaApi(data, "Operação concluída."), data.ok);
 
           if (data.ok) limparFormulario();
           fetchData();
@@ -304,7 +294,7 @@
 
         error: function (xhr) {
           const message = mensagemDaApi(xhr.responseJSON, "Erro ao cadastrar contato.");
-          showToast("Erro ao cadastrar", message, false);
+          showToast("Não foi possível gravar", message, false);
           fetchData();
         },
 
@@ -351,7 +341,7 @@
     }
 
     function updateRecordCount(total) {
-      const texto = total === 1 ? "1 registro" : `${total} registros`;
+      const texto = total === 1 ? "1 contato" : `${total} contatos`;
       $("#record-count").text(texto);
     }
 
@@ -373,13 +363,26 @@
           if (data.length === 0) {
             $("#table-line")[0].replaceChildren(renderEmpty());
           } else {
-            $("#table-line")[0].replaceChildren(...data.map(renderRow));
+            const ordenados = [...data].sort((a, b) =>
+              a.nome.localeCompare(b.nome, "pt-BR", { sensitivity: "base" }));
+            const linhas = [];
+            let letraAtual = null;
+            ordenados.forEach(item => {
+              const letra = letraInicial(item.nome);
+              if (letra !== letraAtual) {
+                linhas.push(renderGrupo(letra));
+                letraAtual = letra;
+              }
+              linhas.push(renderRow(item));
+            });
+            $("#table-line")[0].replaceChildren(...linhas);
           }
+          renderIndice(data);
           updateRecordCount(data.length);
         },
         error: function (xhr, status) {
           if (status === "abort") return; // cancelada de propósito por uma listagem mais nova
-          showToast("Erro de conexão", "Falha na comunicação com o servidor.", false);
+          showToast("Sem resposta da API", "Não foi possível carregar a lista. Tente atualizar em alguns segundos.", false);
           $("#record-count").text("—");
         },
         complete: function (xhr) {
@@ -395,14 +398,10 @@
       const row = rowTemplate.content.cloneNode(true);
       row.querySelector('[data-field="nome"]').textContent = item.nome;
 
-      const avatar = row.querySelector('[data-field="avatar"]');
-      avatar.textContent = iniciais(item.nome);
-      avatar.classList.add(temaPorNome(item.nome));
-
       const emailEl = row.querySelector('[data-field="email"]');
       const link = document.createElement("a");
       link.href = `mailto:${item.email}`;
-      link.className = "fg-2";
+      link.className = "dado";
       link.textContent = item.email;
       emailEl.replaceChildren(link);
 
@@ -417,30 +416,65 @@
     function renderEmpty() {
       const tr = document.createElement("tr");
       const td = document.createElement("td");
-      td.colSpan = 2;
-      td.className = "text-center py-5 fg-3";
+      td.colSpan = 3;
+      td.className = "text-center py-5 ct-tinta-suave";
 
       const icon = document.createElement("i");
       icon.className = "bi bi-inbox d-block mb-2";
-      icon.style.fontSize = "2.5rem";
+      icon.style.fontSize = "2rem";
       icon.setAttribute("aria-hidden", "true");
 
-      td.append(icon, "Nenhum contato cadastrado ainda");
+      td.append(icon, "Nenhum contato ainda. Cadastre o primeiro no formulário.");
       tr.append(td);
       return tr;
     }
 
-    function iniciais(nome) {
-      const partes = nome.trim().split(/\s+/);
-      const primeira = partes[0]?.charAt(0) ?? "";
-      const ultima = partes.length > 1 ? partes[partes.length - 1].charAt(0) : "";
-      return (primeira + ultima).toUpperCase();
+    function letraInicial(nome) {
+      const letra = nome.trim().charAt(0)
+        .normalize("NFD").replace(/[̀-ͯ]/g, "")
+        .toUpperCase();
+      return /^[A-Z]$/.test(letra) ? letra : "#";
     }
 
-    function temaPorNome(nome) {
-      let soma = 0;
-      for (const c of nome) soma += c.charCodeAt(0);
-      return temasAvatar[soma % temasAvatar.length];
+    function renderGrupo(letra) {
+      const tr = document.createElement("tr");
+      tr.className = "ct-grupo";
+      const th = document.createElement("th");
+      th.colSpan = 3;
+      th.id = letra === "#" ? "letra-outros" : `letra-${letra}`;
+      th.textContent = letra;
+      tr.append(th);
+      return tr;
+    }
+
+    const LETRAS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
+    function renderIndice(contatos) {
+      const presentes = new Set(contatos.map(c => letraInicial(c.nome)));
+      const itens = LETRAS.map(letra => {
+        if (presentes.has(letra)) {
+          const a = document.createElement("a");
+          a.className = "ct-aba";
+          a.href = `#letra-${letra}`;
+          a.textContent = letra;
+          a.setAttribute("aria-label", `Ir para a letra ${letra}`);
+          return a;
+        }
+        const span = document.createElement("span");
+        span.className = "ct-aba is-vazia";
+        span.textContent = letra;
+        span.setAttribute("aria-hidden", "true");
+        return span;
+      });
+      if (presentes.has("#")) {
+        const a = document.createElement("a");
+        a.className = "ct-aba";
+        a.href = "#letra-outros";
+        a.textContent = "#";
+        a.setAttribute("aria-label", "Ir para nomes que não começam com letra");
+        itens.push(a);
+      }
+      document.getElementById("indice-letras").replaceChildren(...itens);
     }
 
     function mensagemDaApi(resposta, padrao) {
@@ -470,7 +504,7 @@
       const erros = [];
 
       if (!nome) {
-        erros.push("O campo Nome é obrigatório.");
+        erros.push("Informe o nome.");
       } else if (nome.length < 3) {
         erros.push("O nome deve ter pelo menos 3 caracteres.");
       } else if (nome.length > 100) {
@@ -478,7 +512,7 @@
       }
 
       if (!email) {
-        erros.push("O campo Email é obrigatório.");
+        erros.push("Informe o e-mail.");
       } else if (email.length > 100) {
         erros.push("O e-mail deve ter no máximo 100 caracteres.");
       } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
